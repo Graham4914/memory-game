@@ -1,12 +1,17 @@
 import React from "react";
 
-const GameScreen = () => {
+function GameScreen({ cards }) {
     return (
         <div>
-            <h1>Game Screen</h1>
-            <p>Game will go here!</p>
+            <h2>Memory Game</h2>
+            <div className="card-grid">
+                {cards.map((card) =>(
+                    <div key={card.code} className="card">
+                       <img src={card.image} alt={`${card.value} of ${card.suit}`} /> 
+                       </div>
+                ))}
+            </div>
         </div>
     );
-};
-
+}
 export default GameScreen;
