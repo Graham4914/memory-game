@@ -1,0 +1,28 @@
+/* GameScreen.css */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    gap: 1rem; /* Space between cards */
+    justify-content: center; /* Center horizontally */
+    margin-top: 2rem;
+  }
+  
+
+  .card {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.05); /* Subtle hover effect */
+  }
+  
+
+  .score-display {
+    position: absolute; 
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  

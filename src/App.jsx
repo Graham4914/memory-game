@@ -15,6 +15,19 @@ import GameScreen from './components/GameScreen';
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
 
+  //Memory logic
+  const handleCardClick = (cardCode) => {
+    if (selectedCards.includes(cardCode)) {
+      //lose condition
+      setGameState("lost");
+    } else {
+      //Add card to selected
+      setSelectedCards([...selectedCards, cardCode]);
+      setScore(score + 1);
+    }
+   
+  }
+
 
   const startGame = () => {
     //Reset states
@@ -90,6 +103,7 @@ import GameScreen from './components/GameScreen';
         {gameState === "playing" && (
           <GameScreen
           cards={cards}
+          onCardClick={handleCardClick} 
           selectedCards={selectedCards}
           setSelectedCards={setSelectedCards}
           score={setScore}
