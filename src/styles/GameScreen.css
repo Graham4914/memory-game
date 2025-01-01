@@ -1,7 +1,7 @@
 /* GameScreen.css */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(4, auto);
     gap: 1rem; /* Space between cards */
     justify-content: center; /* Center horizontally */
     margin-top: 2rem;
@@ -26,3 +26,22 @@
     font-weight: bold;
   }
   
+  .score-timer-container {
+    position: absolute;
+    top: 10%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+    font-size: 1.2rem;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  .timer {
+    text-align: left;
+  }
+  
+  .score {
+    text-align: right;
+  }

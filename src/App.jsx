@@ -5,6 +5,7 @@ import GameScreen from './components/GameScreen';
   function App() {
   //Gamestate - Appflow
   const [gameState, setGameState] = useState("intro");
+  const [difficulty, setDifficulty] = useState(null);
 
   //API related state
   const [deckId, setDeckId] = useState(null);
@@ -92,7 +93,7 @@ import GameScreen from './components/GameScreen';
     return (
       <div>
         {gameState === "intro" && (
-          <IntroScreen onStart={startGame} />
+          <IntroScreen onStart={startGame} setDifficulty={setDifficulty} />
           )}
 
         {gameState === "loading" && (

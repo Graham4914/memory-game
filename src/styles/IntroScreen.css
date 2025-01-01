@@ -1,13 +1,13 @@
 /* IntroScreen.css */
 
-/* 1) Reset body margin/padding to remove default scrollbars if necessary */
+
 html,
 body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* hides scrollbars if content is larger than viewport */
+  overflow: hidden; 
 }
 
 .intro-container {
@@ -30,18 +30,59 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .watch-intro-btn {
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+    }
+    100% {
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .watch-intro-btn, button.intro-button {
+    font-size: 1.5rem;
     padding: 1rem 2rem;
-    font-size: 1.2rem;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    border: none;
+    border: 2px solid #fff;
+    background-color:  rgba(0, 0, 0, 0.7);
+    color: white;
     cursor: pointer;
-    border-radius: 4px;
   }
 
+  /* 3) Difficulty Buttons: same general style plus spacing between them */
+  .difficulty-options {
+    display: flex;
+    gap: 1rem;          /* space between the buttons */
+    justify-content: center;
+    margin-top: 1.5rem; /* some spacing above them */
+  }
+
+  .difficulty-options button {
+    font-size: 1.2rem;               /* slightly smaller than "Watch Intro" if you like */
+    padding: 1rem 2rem;
+    border: 2px solid #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    cursor: pointer;
+  }
+
+  
+    /* 4) Hover states */
+  .difficulty-btn:hover,
+  .watch-intro-btn:hover,
+  .intro-button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+
+  
   .intro-background {
     display: flex;
     align-items: center;
@@ -84,15 +125,20 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* perfect center horizontally & vertically */
-  text-align: center;              /* center align text and button */
-  color: #fff;                     /* white text, typically stands out on video */
+  transform: translate(-50%, -50%); 
+  text-align: center;              
+  color: #fff;  
+  /* background: rgba(0, 0, 0, 0.4); 
+  padding: 2rem; 
+  border-radius: 8px;                    */
 }
 
 /* 5) Optional styling for text and button */
 .intro-title {
-  font-size: 2rem;
+  font-size: 3.5rem;  /* bigger for more impact */
   margin-bottom: 1rem;
+  -webkit-text-stroke: 1px #000; 
+
 }
 
 .intro-button {
@@ -113,4 +159,34 @@ body {
 .spinner {
     color: #fff;
     font-size: 1.2rem;
+  }
+
+ 
+  .intro-story{
+  font-size: 1.5rem;
+    font-weight: 600;
+  color: #fff;
+  }
+
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .pulse {
+    animation: pulse 1.5s infinite;
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1.5s ease forwards;
+    animation-delay: 0.3s; 
   }

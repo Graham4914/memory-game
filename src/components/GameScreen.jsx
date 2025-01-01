@@ -3,7 +3,7 @@ import "/src/styles/GameScreen.css";
 
 function GameScreen({ cards, onCardClick, score }) {
     //Render first 10 cards
-    const visibleCards = cards.slice(0, 10);
+    const visibleCards = cards.slice(0, 8);
     return (
         <div>
             <div className="score-display">Score: {score}</div>
