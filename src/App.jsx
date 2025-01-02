@@ -15,6 +15,7 @@ import { renderCards } from './utils/renderCards';
   //Game logic state
   const [selectedCards, setSelectedCards] = useState([]);
   const [visibleCards, setVisibleCards] = useState([]); 
+  const [cardsFlipped, setCardsFlipped] = useState(false);
   const [videoWatched, setVideoWatched] = useState(false);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
@@ -45,6 +46,38 @@ import { renderCards } from './utils/renderCards';
 
 
   //Memory logic
+  // const handleCardClick = (cardCode) => {
+  //   console.log("Clicked card code:", cardCode);
+  
+  //   if (selectedCards.includes(cardCode)) {
+  //     console.log("Card already selected. Losing the game...");
+  //     handleLose();
+  //   } else {
+  //     console.log("New card selected:", cardCode);
+  //     const newSelected = [...selectedCards, cardCode];
+  //     setSelectedCards(newSelected);
+  //     console.log("Updated selected cards:", newSelected);
+  
+
+  //     setScore((prevScore) => {
+  //       const newScore = prevScore + 1;
+  //       console.log("Updated score:", newScore);
+
+  //       setBestScore((prevBestScore) => Math.max(prevBestScore, newScore));
+
+  //       const winCondition = getWinCondition();
+
+  //       // Check for win condition
+  //     if (newScore >= winCondition) { // Adjust this based on your win condition
+  //       handleWin();
+  //     } else {
+  //       shuffleAndRender(); // Re-render the cards
+  //     }
+  //     return newScore;
+       
+  //     });
+  //   }
+  // };
   const handleCardClick = (cardCode) => {
     console.log("Clicked card code:", cardCode);
   
@@ -57,23 +90,30 @@ import { renderCards } from './utils/renderCards';
       setSelectedCards(newSelected);
       console.log("Updated selected cards:", newSelected);
   
-      setScore((prevScore) => {
-        const newScore = prevScore + 1;
-        console.log("Updated score:", newScore);
-
-        setBestScore((prevBestScore) => Math.max(prevBestScore, newScore));
-
-        const winCondition = getWinCondition();
-
-        // Check for win condition
-      if (newScore >= winCondition) { // Adjust this based on your win condition
-        handleWin();
-      } else {
-        shuffleAndRender(); // Re-render the cards
-      }
-      return newScore;
-       
-      });
+      // Trigger the flip animation for all cards
+      setCardsFlipped(true); // Set the flipping state to true
+  
+      setTimeout(() => {
+        setScore((prevScore) => {
+          const newScore = prevScore + 1;
+          console.log("Updated score:", newScore);
+  
+          setBestScore((prevBestScore) => Math.max(prevBestScore, newScore));
+  
+          const winCondition = getWinCondition();
+  
+          // Check for win condition
+          if (newScore >= winCondition) {
+            handleWin();
+          } else {
+            shuffleAndRender(); // Re-render the cards after the animation
+          }
+          return newScore;
+        });
+  
+        // Reset the flipping state after the shuffle
+        setCardsFlipped(false);
+      }, 600); // Match this duration to the flip animation's CSS transition time
     }
   };
   
@@ -170,6 +210,7 @@ import { renderCards } from './utils/renderCards';
           shuffleAndRender={shuffleAndRender}
           cards={cards}
           onCardClick={handleCardClick} 
+          cardsFlipped={cardsFlipped}
           selectedCards={selectedCards}
           setSelectedCards={setSelectedCards}
           score={score}
@@ -177,6 +218,7 @@ import { renderCards } from './utils/renderCards';
           onWin={handleWin}
           onLose={handleLose}
           difficulty={difficulty}
+          cardsToWin={getWinCondition()}
           />
         )}
 

@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "/src/styles/GameScreen.css";
+import "/src/styles/CardAnimate.css";
 
 function GameScreen({
     visibleCards,
     onCardClick,
+    cardsFlipped,
     score,
     bestScore,
     onLose,
     difficulty,
+    cardsToWin,
+    
   }) {
+ 
+  const levelHeading = `Level: ${difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}`;
+  const cardsToWinText = `Cards to Win: ${cardsToWin}`;
+  
 
   const [timer, setTimer] = useState(null); // Timer in seconds
 
@@ -54,6 +62,11 @@ function GameScreen({
         <p className="timer">{formatTime(timer)}</p>
       </div>
 
+      <div className="level-container">
+        <h2>Level: {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</h2>
+        <p>Cards to Win: {cardsToWin}</p> {/* Dynamically display cardsToWin */}
+      </div>
+      
       <div className="score-container">
         <p>Score:{score}</p> 
         <p>Best Score:{bestScore}</p> 
@@ -62,13 +75,18 @@ function GameScreen({
         {visibleCards.map((card) => (
           <div
             key={card.code}
-            className="card"
+            className={`card ${cardsFlipped ? "flipped" : ""}`}
             onClick={() => onCardClick(card.code)}
           >
+            <div className="card-inner">
+            <div className="card-front"></div>
+            <div className="card-back">
             <img
               src={card.image}
               alt={`${card.value} of ${card.suit}`}
             />
+            </div>
+            </div>
           </div>
         ))}
       </div>

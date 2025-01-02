@@ -8,15 +8,15 @@
   }
   
 
-  .card {
+  /* .card {
     cursor: pointer;
     transition: transform 0.2s ease;
   }
   
   .card:hover {
-    transform: scale(1.05); /* Subtle hover effect */
+    transform: scale(1.05); 
   }
-  
+   */
 
   .score-container {
     position: absolute;
@@ -70,5 +70,23 @@
     font-size: 2rem;
     font-family: "Courier New", Courier, monospace; /* Digital clock style */
     margin-top: 5px;
+  }
+  
+  .level-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-align: right;
+    color: #fff;
+  }
+  
+  .level-container h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .level-container p {
+    margin: 5px 0 0;
+    font-size: 1rem;
   }
   
