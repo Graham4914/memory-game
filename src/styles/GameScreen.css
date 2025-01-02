@@ -18,11 +18,17 @@
   }
   
 
-  .score-display {
-    position: absolute; 
-    top: 1rem;
-    right: 1rem;
+  .score-container {
+    position: absolute;
+    top: 50%; /* Adjust based on vertical alignment */
+    right: 10px; /* Align to the right */
+    transform: translateY(-50%); /* Center vertically */
     font-size: 1.5rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-align: right;
     font-weight: bold;
   }
   

@@ -25,19 +25,57 @@ import { renderCards } from './utils/renderCards';
     setVisibleCards(new8);
   }
 
+  const getWinCondition = () => {
+    switch (difficulty) {
+      case "easy":
+        return 8;
+      case "medium":
+        return 16;
+      case "hard":
+        return 32;
+      case "super-spy":
+        return 52;
+      default:
+        return 8; // Fallback for safety
+    }
+  };
+  
+
+
 
   //Memory logic
   const handleCardClick = (cardCode) => {
+    console.log("Clicked card code:", cardCode);
+  
     if (selectedCards.includes(cardCode)) {
-      //lose condition
-      setGameState("lost");
+      console.log("Card already selected. Losing the game...");
+      handleLose();
     } else {
-      //Add card to selected
-      setSelectedCards([...selectedCards, cardCode]);
-      setScore(score + 1);
+      console.log("New card selected:", cardCode);
+      const newSelected = [...selectedCards, cardCode];
+      setSelectedCards(newSelected);
+      console.log("Updated selected cards:", newSelected);
+  
+      setScore((prevScore) => {
+        const newScore = prevScore + 1;
+        console.log("Updated score:", newScore);
+
+        setBestScore((prevBestScore) => Math.max(prevBestScore, newScore));
+
+        const winCondition = getWinCondition();
+
+        // Check for win condition
+      if (newScore >= winCondition) { // Adjust this based on your win condition
+        handleWin();
+      } else {
+        shuffleAndRender(); // Re-render the cards
+      }
+      return newScore;
+       
+      });
     }
-   
-  }
+  };
+  
 
 
   const startGame = () => {
@@ -92,6 +130,7 @@ import { renderCards } from './utils/renderCards';
     }, [cards, gameState]);
 
     const handleWin = () => {
+      console.log("Current Score:", score, "Best Score:", bestScore);
       setGameState("won");
       if (score > bestScore) {
         setBestScore(score);
@@ -128,7 +167,8 @@ import { renderCards } from './utils/renderCards';
           onCardClick={handleCardClick} 
           selectedCards={selectedCards}
           setSelectedCards={setSelectedCards}
-          score={setScore}
+          score={score}
+          bestScore={bestScore}
           onWin={handleWin}
           onLose={handleLose}
           />

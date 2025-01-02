@@ -1,16 +1,20 @@
 import { shuffle } from "lodash";
-// or write your own Fisher-Yates shuffle if you prefer
 
 export function renderCards(fullDeck, selectedCards, count = 8) {
   console.log("RenderCards input:", { fullDeck, selectedCards });
+
+  if (fullDeck.length === 0) {
+    console.error("RenderCards called with and empty dullDeck")
+    return [];
+  }
 
   const unselected = fullDeck.filter(
     (card) => !selectedCards.includes(card.code)
   );
 
   if (unselected.length === 0) {
-    console.log("All cards have been selected or fullDeck is empty.");
-    return []; // Return an empty array if no cards can be selected
+    // No unselected cards left, return any random 8 cards
+    return shuffle(fullDeck).slice(0, count);
   }
 
   const randomUnselected = unselected[Math.floor(Math.random() * unselected.length)];
