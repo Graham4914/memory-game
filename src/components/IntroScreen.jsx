@@ -8,15 +8,28 @@ function Spinner() {
   return <div className="spinner">Loading cinematic assets...</div>;
 }
 
-function IntroScreen({ onStart, setDifficulty }) {
+function IntroScreen({ onStart, setDifficulty, videoWatched }) {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [introStarted, setIntroStarted] = useState(false);
-  const [videoEnded, setVideoEnded] = useState(false);
+  const [videoEnded, setVideoEnded] = useState(videoWatched);
   const [muted, setMuted] = useState(false);
   const [selectedDifficulty, setSelectedDifficulty] = useState(null);
+  const [soundPlaying, setSoundPlaying] = useState(true); // Default to playing sound
 
   const videoRef = useRef(null);
 
+  const handleWatchIntro = () => {
+    setIntroStarted(true);
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  };
+
+  const handleVideoEnd = () => {
+  setVideoEnded(true);
+};
+
+  
   const handleDifficultySelect = (diff) => {
     setSelectedDifficulty(diff);
   };
@@ -32,18 +45,9 @@ function IntroScreen({ onStart, setDifficulty }) {
   onStart(); 
 };
 
-const handleWatchIntro = () => {
-  setIntroStarted(true);
-  if (videoRef.current) {
-    videoRef.current.play();
-  }
-};
 
-const handleVideoEnd = () => {
-  setVideoEnded(true);
-};
 
-  
+
 
   const handleCanPlay = () => {
     setVideoLoaded(true);
@@ -56,11 +60,11 @@ const handleVideoEnd = () => {
   return (
     <div className="intro-container">
    
-      {!introStarted && (
+      {!introStarted &&  (
         <div className="intro-background">
           {/* If the video is loaded, show "Watch Intro"; otherwise, show Spinner */}
           {!videoLoaded && <Spinner />}
-          {videoLoaded && (
+          {videoLoaded && !videoEnded && (
             <button className="intro-button watch-intro-btn" onClick={handleWatchIntro}>
               Watch Intro
             </button>
@@ -86,11 +90,11 @@ const handleVideoEnd = () => {
         minPlaybackRate={0.5}     // slow to half speed
         slowdownInterval={100}    // reduce speed every 100ms
       />
-
+    
       {/* 3) ReactHowler for spy track */}
       <ReactHowler
         src={["/audio/spyintro.wav"]}
-        playing={introStarted}
+        playing={soundPlaying}
         loop
         volume={0.1}
         mute={muted}

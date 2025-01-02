@@ -15,6 +15,7 @@ import { renderCards } from './utils/renderCards';
   //Game logic state
   const [selectedCards, setSelectedCards] = useState([]);
   const [visibleCards, setVisibleCards] = useState([]); 
+  const [videoWatched, setVideoWatched] = useState(false);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
 
@@ -143,6 +144,7 @@ import { renderCards } from './utils/renderCards';
 
     const restartGame = () => {
       setGameState("intro")
+      setVideoWatched(true); // Skip video on replay
     };
 
   
@@ -151,7 +153,10 @@ import { renderCards } from './utils/renderCards';
     return (
       <div>
         {gameState === "intro" && (
-          <IntroScreen onStart={startGame} setDifficulty={setDifficulty} />
+          <IntroScreen onStart={startGame}
+           setDifficulty={setDifficulty}
+           videoWatched={videoWatched}
+            />
           )}
 
         {gameState === "loading" && (
@@ -171,6 +176,7 @@ import { renderCards } from './utils/renderCards';
           bestScore={bestScore}
           onWin={handleWin}
           onLose={handleLose}
+          difficulty={difficulty}
           />
         )}
 
