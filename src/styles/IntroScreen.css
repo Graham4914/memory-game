@@ -128,9 +128,9 @@ body {
   transform: translate(-50%, -50%); 
   text-align: center;              
   color: #fff;  
-  /* background: rgba(0, 0, 0, 0.4); 
+   /* background: rgba(0, 0, 0, 0.4); 
   padding: 2rem; 
-  border-radius: 8px;                    */
+  border-radius: 8px;                   */
 }
 
 /* 5) Optional styling for text and button */
@@ -164,8 +164,11 @@ body {
  
   .intro-story{
   font-size: 1.5rem;
-    font-weight: 600;
+  font-weight: 600;
   color: #fff;
+  background: rgba(0, 0, 0, 0.4); 
+  padding: 1rem; 
+  border-radius: 8px;       
   }
 
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import IntroScreen from './components/IntroScreen';
 import GameScreen from './components/GameScreen';
+import { renderCards } from './utils/renderCards';
 
   function App() {
   //Gamestate - Appflow
@@ -13,8 +14,17 @@ import GameScreen from './components/GameScreen';
 
   //Game logic state
   const [selectedCards, setSelectedCards] = useState([]);
+  const [visibleCards, setVisibleCards] = useState([]); 
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+
+  function shuffleAndRender() {
+    console.log("Shuffling cards with current state:", { cards, selectedCards });
+    const new8 = renderCards(cards, selectedCards, 8);
+    console.log("New visible cards:", new8);
+    setVisibleCards(new8);
+  }
+
 
   //Memory logic
   const handleCardClick = (cardCode) => {
@@ -35,6 +45,7 @@ import GameScreen from './components/GameScreen';
     setSelectedCards([]);
     setScore(0);
     setGameState("loading");
+    setVisibleCards([]); 
 
     //Fetch a new shuffeled deck
     fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1")
@@ -60,6 +71,7 @@ import GameScreen from './components/GameScreen';
         .then((response) => response.json())
         .then((data) => {
           if(data.success) {
+            console.log("Fetched cards:", data.cards);
             setCards(data.cards); //store 52 card objects
             setGameState("playing");
           } else {
@@ -71,6 +83,13 @@ import GameScreen from './components/GameScreen';
         });
       }
     }, [deckId, gameState]);
+
+    useEffect(() => {
+      if (gameState === "playing" && cards.length > 0) {
+        console.log("Cards are ready. Calling shuffleAndRender.");
+        shuffleAndRender();
+      }
+    }, [cards, gameState]);
 
     const handleWin = () => {
       setGameState("won");
@@ -103,6 +122,8 @@ import GameScreen from './components/GameScreen';
           
         {gameState === "playing" && (
           <GameScreen
+          visibleCards={visibleCards}
+          shuffleAndRender={shuffleAndRender}
           cards={cards}
           onCardClick={handleCardClick} 
           selectedCards={selectedCards}

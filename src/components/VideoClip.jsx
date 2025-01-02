@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, forwardRef} from "react";
 
 /**
  * VideoClip component with optional slow-mo near the end.
