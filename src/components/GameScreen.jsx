@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { memo, useState, useEffect } from "react";
 import "/src/styles/GameScreen.css";
-import "/src/styles/CardAnimate.css";
+import { motion } from "framer-motion";
+// import "/src/styles/CardAnimate.css";
+
+
 
 function GameScreen({
     visibleCards,
     onCardClick,
-    cardsFlipped,
     score,
     bestScore,
+    isAnimating,
     onLose,
     difficulty,
-    cardsToWin,
-    
+    cardsToWin,   
   }) {
+  
+    
  
-  const levelHeading = `Level: ${difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}`;
-  const cardsToWinText = `Cards to Win: ${cardsToWin}`;
   
 
   const [timer, setTimer] = useState(null); // Timer in seconds
@@ -55,6 +57,8 @@ function GameScreen({
       const secs = seconds % 60;
       return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
     };
+
+
   return (
     <div className="game-screen">
       <div className="timer-container">
@@ -73,21 +77,24 @@ function GameScreen({
       </div>
       <div className="card-grid">
         {visibleCards.map((card) => (
-          <div
-            key={card.code}
-            className={`card ${cardsFlipped ? "flipped" : ""}`}
-            onClick={() => onCardClick(card.code)}
-          >
-            <div className="card-inner">
-            <div className="card-front"></div>
-            <div className="card-back">
-            <img
-              src={card.image}
-              alt={`${card.value} of ${card.suit}`}
-            />
-            </div>
-            </div>
-          </div>
+      <motion.div
+      key={card.code} // Persistent keys
+      className="card"
+      initial={{ opacity: 1, filter: "blur(0px)" }} // Initial state
+      animate={
+        isAnimating
+          ? { opacity: [1, 0.2, 1], filter: ["blur(0px)", "blur(10px)", "blur(0px)"] }
+          : {}
+      }
+      transition={{
+        duration: 1.0, // Animation duration
+        times: [0, 0.5, 1], // Keyframes
+        // ease: [0.42, 0, 0.58, 1], // Custom easing
+      }}
+      onClick={() => onCardClick(card.code)} // Handle card click
+    >
+      <img src={card.image} alt={`${card.value} of ${card.suit}`} />
+    </motion.div>
         ))}
       </div>
     </div>
@@ -95,4 +102,4 @@ function GameScreen({
   
   }
   
-  export default GameScreen
+  export default memo(GameScreen)

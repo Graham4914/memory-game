@@ -1,8 +1,8 @@
 /* Card Container */
 .card {
-    position: relative;
-    width: 250px; /* Adjust to your card dimensions */
-    height: 350px; /* Adjust to your card dimensions */
+    /* position: relative; */
+     width: 225px; 
+    height: 315px; 
     perspective: 1000px; /* Add 3D perspective */
    
   }
@@ -12,14 +12,14 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    transition: transform 0.8s ease-in-out; /* Smooth flip */
+    transition: transform 0.9s ease-in-out; /* Smooth flip */
     transform-style: preserve-3d;
-    transform: rotateY(180deg); /* Default state: show front */
+    transform: rotateY(0deg); /* Default state: show front */
   }
   
   /* Flip State */
   .card.flipped .card-inner {
-    transform: rotateY(540deg); /* Flip to show back */
+    transform: rotateY(360deg); /* Flip to show back */
   }
   
   /* Front and Back Faces */
@@ -44,6 +44,6 @@
   /* Back of the Card */
   .card-back {
     background:transparent; /* Replace with card back design */
-    transform: rotateY(180deg); /* Initially hidden */
+    transform: rotateY(0deg); /* Initially hidden */
   }
   
