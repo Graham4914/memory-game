@@ -48,25 +48,23 @@ import { renderCards } from './utils/renderCards';
     console.log("Clicked card code:", cardCode);
   
     if (selectedCards.includes(cardCode)) {
-      console.log("Card already selected. Losing the game...");
+      // console.log("Card already selected. Losing the game...");
       handleLose();
+      console.log("Animation started");
+      
     } else {
       console.log("New card selected:", cardCode);
       const newSelected = [...selectedCards, cardCode];
       setSelectedCards(newSelected);
-      console.log("Updated selected cards:", newSelected);
+      // console.log("Updated selected cards:", newSelected);
 
    
       setTimeout(() => {
         setScore((prevScore) => {
           const newScore = prevScore + 1;
-          console.log("Updated score:", newScore);
-  
           setBestScore((prevBestScore) => Math.max(prevBestScore, newScore));
-  
           const winCondition = getWinCondition();
-  
-          // Check for win condition
+          
           if (newScore >= winCondition) {
             handleWin();
           } 
@@ -76,17 +74,17 @@ import { renderCards } from './utils/renderCards';
 
       setIsAnimating(true);
 
-      setTimeout(() => {
-        console.log("Shuffling cards...");
-        shuffleAndRender(); // Update visibleCards during the fade-out
-      }, 500);
-  
+       // Shuffle and re-render at midpoint
+  setTimeout(() => {
+    console.log("Shuffling cards at midpoint...");
+    shuffleAndRender(); // Shuffle cards while flipped
+  }, 500); // Half of 0.6s duration
 
-      
-      setTimeout(() => {
-        setIsAnimating(false); // Reset animation state
-      },1000 );
-     
+  // Reset animation state after full animation duration
+  setTimeout(() => {
+    setIsAnimating(false);
+    console.log("Animation complete");
+  }, 1000);
     }
   };
   

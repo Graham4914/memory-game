@@ -1,7 +1,8 @@
 import React, { memo, useState, useEffect } from "react";
 import "/src/styles/GameScreen.css";
 import { motion } from "framer-motion";
-// import "/src/styles/CardAnimate.css";
+import Card from "./card";
+import "/src/styles/CardAnimate.css";
 
 
 
@@ -11,6 +12,7 @@ function GameScreen({
     score,
     bestScore,
     isAnimating,
+    setIsAnimating,
     onLose,
     difficulty,
     cardsToWin,   
@@ -29,6 +31,8 @@ function GameScreen({
       hard: 180, 
       "super-spy": 300, 
     };
+
+
   
     useEffect(() => {
       // Initialize timer based on difficulty
@@ -77,24 +81,12 @@ function GameScreen({
       </div>
       <div className="card-grid">
         {visibleCards.map((card) => (
-      <motion.div
-      key={card.code} // Persistent keys
-      className="card"
-      initial={{ opacity: 1, filter: "blur(0px)" }} // Initial state
-      animate={
-        isAnimating
-          ? { opacity: [1, 0.2, 1], filter: ["blur(0px)", "blur(10px)", "blur(0px)"] }
-          : {}
-      }
-      transition={{
-        duration: 1.0, // Animation duration
-        times: [0, 0.5, 1], // Keyframes
-        // ease: [0.42, 0, 0.58, 1], // Custom easing
-      }}
-      onClick={() => onCardClick(card.code)} // Handle card click
-    >
-      <img src={card.image} alt={`${card.value} of ${card.suit}`} />
-    </motion.div>
+    <Card
+    key={card.code}
+    card={card}
+    onClick={() => onCardClick(card.code)}
+    isFlipped={isAnimating} // Flip all cards during animation
+  />
         ))}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { shuffle } from "lodash";
 
 export function renderCards(fullDeck, selectedCards, count = 8) {
-  console.log("RenderCards input:", { fullDeck, selectedCards });
+  
 
   if (fullDeck.length === 0) {
     console.error("RenderCards called with and empty dullDeck")
@@ -22,7 +22,7 @@ export function renderCards(fullDeck, selectedCards, count = 8) {
   const randomRest = shuffle(restPool).slice(0, count - 1);
 
   const combined = shuffle([randomUnselected, ...randomRest]);
-  console.log("Rendered cards:", combined);
+  
 
   return combined;
 }
