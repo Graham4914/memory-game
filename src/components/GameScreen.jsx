@@ -11,16 +11,50 @@ function GameScreen({
     onCardClick,
     score,
     bestScore,
-    isAnimating,
-    setIsAnimating,
+    shuffleAndRender,
     onLose,
     difficulty,
     cardsToWin,   
   }) {
   
     
- 
-  
+  const [flipPhase, setFlipPhase] = useState(0);
+  const [cardsFlippedCount, setCardsFlippedCount] = useState(0);
+
+   
+    const handleUserClick = (cardCode) => {
+      onCardClick(cardCode);
+      setFlipPhase(1);
+      setCardsFlippedCount(0);
+    };
+
+
+    const handlePhaseComplete = (phase) => {
+      if (phase === 1) {
+        // another card finished flipping 0->180
+        setCardsFlippedCount((count) => count + 1);
+      } else if (phase === 2) {
+        // another card finished flipping 180->0
+        // do whatever is needed for the final step
+        // or track another separate count
+      }
+    };
+
+      // Whenever cardsFlippedCount changes, check if all have reported in
+  useEffect(() => {
+    if (flipPhase === 1 && cardsFlippedCount === visibleCards.length) {
+      // All cards done with the first flip => now do the shuffle
+      shuffleAndRender();
+      // Then flip them back
+      setFlipPhase(2);
+      // (If you want, reset cardsFlippedCount for phase 2)
+      setCardsFlippedCount(0);
+    } else if (flipPhase === 2 && cardsFlippedCount === visibleCards.length) {
+      // All done flipping back => set flipPhase=0
+      setFlipPhase(0);
+    }
+  }, [flipPhase, cardsFlippedCount, visibleCards, shuffleAndRender]);
+    
 
   const [timer, setTimer] = useState(null); // Timer in seconds
 
@@ -79,14 +113,17 @@ function GameScreen({
         <p>Score:{score}</p> 
         <p>Best Score:{bestScore}</p> 
       </div>
-      <div className="card-grid">
+
+
+       <div className="card-grid">
         {visibleCards.map((card) => (
-    <Card
-    key={card.code}
-    card={card}
-    onClick={() => onCardClick(card.code)}
-    isFlipped={isAnimating} // Flip all cards during animation
-  />
+          <Card
+            key={card.code}
+            card={card}
+            flipPhase={flipPhase}
+            onPhaseComplete={handlePhaseComplete}
+            onClick={() => handleUserClick(card.code)}
+          />
         ))}
       </div>
     </div>
@@ -94,4 +131,4 @@ function GameScreen({
   
   }
   
-  export default memo(GameScreen)
+  export default React.memo(GameScreen)

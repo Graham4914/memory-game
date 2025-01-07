@@ -15,7 +15,6 @@ import { renderCards } from './utils/renderCards';
   //Game logic state
   const [selectedCards, setSelectedCards] = useState([]);
   const [visibleCards, setVisibleCards] = useState([]); 
-  const [cardsFlipped, setCardsFlipped] = useState(false);
   const [videoWatched, setVideoWatched] = useState(false);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
@@ -48,7 +47,6 @@ import { renderCards } from './utils/renderCards';
     console.log("Clicked card code:", cardCode);
   
     if (selectedCards.includes(cardCode)) {
-      // console.log("Card already selected. Losing the game...");
       handleLose();
       console.log("Animation started");
       
@@ -57,8 +55,6 @@ import { renderCards } from './utils/renderCards';
       const newSelected = [...selectedCards, cardCode];
       setSelectedCards(newSelected);
       // console.log("Updated selected cards:", newSelected);
-
-   
       setTimeout(() => {
         setScore((prevScore) => {
           const newScore = prevScore + 1;
@@ -72,22 +68,35 @@ import { renderCards } from './utils/renderCards';
         });
       }, 100); 
 
-      setIsAnimating(true);
-
-       // Shuffle and re-render at midpoint
-  setTimeout(() => {
-    console.log("Shuffling cards at midpoint...");
-    shuffleAndRender(); // Shuffle cards while flipped
-  }, 500); // Half of 0.6s duration
-
-  // Reset animation state after full animation duration
-  setTimeout(() => {
-    setIsAnimating(false);
-    console.log("Animation complete");
-  }, 1000);
     }
   };
+  // const handleCardClick = (cardCode) => {
+  //   console.log("Clicked card code:", cardCode);
   
+  //   if (selectedCards.includes(cardCode)) {
+  //     handleLose();
+  //     return; // End if the card is already selected
+  //   }
+  
+  //   console.log("New card selected:", cardCode);
+  //   const newSelected = [...selectedCards, cardCode];
+  //   setSelectedCards(newSelected); // Correctly update selected cards
+  //   console.log("Updated selected cards:", newSelected);
+
+  //       setTimeout(() => {
+  //       setScore((prevScore) => {
+  //         const newScore = prevScore + 1;
+  //         setBestScore((prevBestScore) => Math.max(prevBestScore, newScore));
+  //         const winCondition = getWinCondition();
+          
+  //         if (newScore >= winCondition) {
+  //           handleWin();
+  //         } 
+  //         return newScore;  
+  //       });
+  //     }, 0); 
+    
+  //     };
 
 
   const startGame = () => {
@@ -122,6 +131,7 @@ import { renderCards } from './utils/renderCards';
         .then((data) => {
           if(data.success) {
             console.log("Fetched cards:", data.cards);
+               
             setCards(data.cards); //store 52 card objects
              // Preload all card images
           data.cards.forEach((card) => {
@@ -188,8 +198,7 @@ import { renderCards } from './utils/renderCards';
           visibleCards={visibleCards}
           shuffleAndRender={shuffleAndRender}
           cards={cards}
-          onCardClick={handleCardClick} 
-          cardsFlipped={cardsFlipped}
+          onCardClick={handleCardClick}  
           selectedCards={selectedCards}
           setSelectedCards={setSelectedCards}
           score={score}

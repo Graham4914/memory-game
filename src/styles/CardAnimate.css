@@ -1,24 +1,51 @@
-.card-back {
-  background: blue; /* Replace with your card back design */
- 
-  border-radius: 5px;
-}
 
 .card-grid {
   display: grid;
   grid-template-columns: repeat(4, auto);
-  gap: 1rem; /* Space between cards */
-  justify-content: center; /* Center horizontally */
+  gap: 1rem; 
+  justify-content: center; 
   margin-top: 2rem;
 }
 
-
 .card {
-  cursor: pointer;
-  transition: transform 0.2s ease;
+  position: relative;
+  width: 226px;
+  height: 314px;
+  perspective: 1000px;
+  
 }
+
+
+/* The wrapper that rotates from 0 to 180 or 180 to 0 */
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+
+}
+
+/* Both faces occupy the full card space */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Crucial for hiding mirrored side */
+}
+
+/* The back is rotated 180°, so when card-inner is at 0°, the user sees the front.
+   When card-inner rotates to 180°, the user sees the back. */
+.card-front {
+  transform: rotateY(180deg);
+}
+
+
 
 .card:hover {
-  transform: scale(1.05); 
+  transform: scale(1.05) 
+  
+} 
+.card-back img {
+  border-radius: 10px;
 }
-
