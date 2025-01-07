@@ -27,7 +27,7 @@ export default function VideoClip({
   style = {},
   onCanPlayThrough = "",
 
-  // Additional slowdown props, with defaults:
+  
   enableSlowdown = false,
   nearEndThreshold = 1.0,
   minPlaybackRate = 0.5,
@@ -35,12 +35,11 @@ export default function VideoClip({
 }) {
   const videoRef = useRef(null);
 
-  // track if we're "near the end" so we can begin the slowdown
+  
   const [isNearEnd, setIsNearEnd] = useState(false);
-  // track current playback rate
   const [playbackRate, setPlaybackRate] = useState(1.0);
 
-  // handle time updates: check how close we are to the end
+ 
   const handleTimeUpdate = () => {
     if (!videoRef.current) return;
     const { currentTime, duration } = videoRef.current;
@@ -54,7 +53,6 @@ export default function VideoClip({
     }
   };
 
-  // once isNearEnd is true, gradually ramp down from 1.0 to minPlaybackRate
   useEffect(() => {
     if (!videoRef.current) return;
     if (!enableSlowdown) return;
@@ -97,12 +95,12 @@ export default function VideoClip({
       src={src}
       loop={loop}
       muted={muted}
-      // pass down your style
+      
       style={{ maxWidth: "100%", ...style }}
-      // forward the onEnded callback if provided
+      
       onCanPlayThrough={onCanPlayThrough}
       onEnded={onEnded}
-      // attach timeUpdate event for slowdown detection
+      
       onTimeUpdate={handleTimeUpdate}
     />
   );

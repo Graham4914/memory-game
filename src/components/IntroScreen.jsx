@@ -14,7 +14,7 @@ function IntroScreen({ onStart, setDifficulty, videoWatched }) {
   const [videoEnded, setVideoEnded] = useState(videoWatched);
   const [muted, setMuted] = useState(false);
   const [selectedDifficulty, setSelectedDifficulty] = useState(null);
-  const [soundPlaying, setSoundPlaying] = useState(true); // Default to playing sound
+  const [soundPlaying, setSoundPlaying] = useState(true); 
 
   const videoRef = useRef(null);
 

@@ -40,17 +40,17 @@ function GameScreen({
       }
     };
 
-      // Whenever cardsFlippedCount changes, check if all have reported in
+ 
   useEffect(() => {
     if (flipPhase === 1 && cardsFlippedCount === visibleCards.length) {
-      // All cards done with the first flip => now do the shuffle
+     
       shuffleAndRender();
-      // Then flip them back
+      
       setFlipPhase(2);
-      // (If you want, reset cardsFlippedCount for phase 2)
+    
       setCardsFlippedCount(0);
     } else if (flipPhase === 2 && cardsFlippedCount === visibleCards.length) {
-      // All done flipping back => set flipPhase=0
+      
       setFlipPhase(0);
     }
   }, [flipPhase, cardsFlippedCount, visibleCards, shuffleAndRender]);

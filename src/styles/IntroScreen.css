@@ -15,17 +15,16 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: #000; /* fallback black background */
+  background-color: #000; 
 }
 
-/* 2) Background for initial state */
+
 .intro-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Use your .webp image from public/images/ */
     background-image: url("/images/introfirstframe.webp");
     background-size: cover;
     background-repeat: no-repeat;
@@ -56,16 +55,16 @@ body {
     cursor: pointer;
   }
 
-  /* 3) Difficulty Buttons: same general style plus spacing between them */
+ 
   .difficulty-options {
     display: flex;
-    gap: 1rem;          /* space between the buttons */
+    gap: 1rem;         
     justify-content: center;
-    margin-top: 1.5rem; /* some spacing above them */
+    margin-top: 1.5rem; 
   }
 
   .difficulty-options button {
-    font-size: 1.2rem;               /* slightly smaller than "Watch Intro" if you like */
+    font-size: 1.2rem;              
     padding: 1rem 2rem;
     border: 2px solid #fff;
     background-color: rgba(0, 0, 0, 0.7);
@@ -74,7 +73,7 @@ body {
   }
 
   
-    /* 4) Hover states */
+   
   .difficulty-btn:hover,
   .watch-intro-btn:hover,
   .intro-button:hover {
@@ -108,7 +107,7 @@ body {
   }
   
 
-/* 2) The container that fills the viewport */
+
 .intro-video {
     position: absolute;
     top: 0;
@@ -116,11 +115,10 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 20%; /* shift to reveal the top of the hotel sign */
+    object-position: 50% 20%; 
   }
   
 
-/* 4) Overlay content (centered) */
 .intro-overlay {
   position: absolute;
   top: 50%;
@@ -128,16 +126,12 @@ body {
   transform: translate(-50%, -50%); 
   text-align: center;              
   color: #fff;  
-   /* background: rgba(0, 0, 0, 0.4); 
-  padding: 2rem; 
-  border-radius: 8px;                   */
 }
 
-/* 5) Optional styling for text and button */
+
 .intro-title {
-  font-size: 3.5rem;  /* bigger for more impact */
+  font-size: 3.5rem;  
   margin-bottom: 1rem;
-  -webkit-text-stroke: 1px #000; 
 
 }
 

@@ -15,36 +15,30 @@
   
 }
 
-
-/* The wrapper that rotates from 0 to 180 or 180 to 0 */
 .card-inner {
   width: 100%;
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-
 }
 
-/* Both faces occupy the full card space */
 .card-front,
 .card-back {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden; /* Crucial for hiding mirrored side */
+  backface-visibility: hidden; 
+ 
 }
 
-/* The back is rotated 180°, so when card-inner is at 0°, the user sees the front.
-   When card-inner rotates to 180°, the user sees the back. */
 .card-front {
   transform: rotateY(180deg);
 }
 
-
-
-.card:hover {
-  transform: scale(1.05) 
-  
+.card-front:hover
+{ 
+  box-shadow: 0 0 20px #42a5f5;;
+  border-radius: 10px;
 } 
 .card-back img {
   border-radius: 10px;
