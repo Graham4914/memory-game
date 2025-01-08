@@ -32,18 +32,9 @@ function IntroScreen({ onStart, setDifficulty, videoWatched }) {
   
   const handleDifficultySelect = (diff) => {
     setSelectedDifficulty(diff);
+    setDifficulty(diff);
+    onStart();
   };
-
-
- const handleEnterCasino = () => {
-  if (!selectedDifficulty) {
-    alert("Please select a difficulty first!");
-    return;
-  }
-  
-  setDifficulty(selectedDifficulty);
-  onStart(); 
-};
 
 
 
@@ -108,9 +99,9 @@ function IntroScreen({ onStart, setDifficulty, videoWatched }) {
       {/* 5) Show overlay after video ends */}
       {videoEnded && (
         <div className="intro-overlay">
-          <h1 className="intro-title fade-up">Your Drink’s Been Spiked, Agent.</h1>
-          <p className="intro-story fade-up">The clock is ticking. Outplay this casino in a lethal game of wits to secure the antidote.<br />
-          One rule: <strong>never pick the same card twice</strong>. One misstep—and the poison wins.</p>
+          <h1 className="intro-title fade-up">Your Drink’s Been Spiked 001.</h1>
+          <p className="intro-story fade-up">The clock is ticking. You have to outplay the house in a lethal game of wits and memory to secure the antidote.<br />
+          One rule: <strong>Never pick the same card twice</strong>. One misstep—and the poison wins.</p>
 
           {/* Difficulty Selection */}
           <div className="difficulty-options fade-up">
@@ -120,12 +111,12 @@ function IntroScreen({ onStart, setDifficulty, videoWatched }) {
             <button className={`difficulty-btn ${!selectedDifficulty ? "pulse" : ""}`} onClick={() => handleDifficultySelect("super-spy")}>Super Spy</button>
           </div>
 
-          <button 
+          {/* <button 
           className={`intro-button ${selectedDifficulty ? "pulse" : ""}`}
           onClick={handleEnterCasino}
           >
             Enter the Casino
-          </button>
+          </button> */}
         </div>
       )}
     </div>

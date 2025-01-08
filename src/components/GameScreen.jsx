@@ -1,6 +1,5 @@
 import React, { memo, useState, useEffect } from "react";
 import "/src/styles/GameScreen.css";
-import { motion } from "framer-motion";
 import Card from "./card";
 import "/src/styles/CardAnimate.css";
 
@@ -31,12 +30,8 @@ function GameScreen({
 
     const handlePhaseComplete = (phase) => {
       if (phase === 1) {
-        // another card finished flipping 0->180
         setCardsFlippedCount((count) => count + 1);
       } else if (phase === 2) {
-        // another card finished flipping 180->0
-        // do whatever is needed for the final step
-        // or track another separate count
       }
     };
 

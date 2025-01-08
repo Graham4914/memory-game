@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import IntroScreen from './components/IntroScreen';
 import GameScreen from './components/GameScreen';
+import ResultScreen from './components/ResultScreen';
 import { renderCards } from './utils/renderCards';
 
   function App() {
@@ -70,33 +71,6 @@ import { renderCards } from './utils/renderCards';
 
     }
   };
-  // const handleCardClick = (cardCode) => {
-  //   console.log("Clicked card code:", cardCode);
-  
-  //   if (selectedCards.includes(cardCode)) {
-  //     handleLose();
-  //     return; // End if the card is already selected
-  //   }
-  
-  //   console.log("New card selected:", cardCode);
-  //   const newSelected = [...selectedCards, cardCode];
-  //   setSelectedCards(newSelected); // Correctly update selected cards
-  //   console.log("Updated selected cards:", newSelected);
-
-  //       setTimeout(() => {
-  //       setScore((prevScore) => {
-  //         const newScore = prevScore + 1;
-  //         setBestScore((prevBestScore) => Math.max(prevBestScore, newScore));
-  //         const winCondition = getWinCondition();
-          
-  //         if (newScore >= winCondition) {
-  //           handleWin();
-  //         } 
-  //         return newScore;  
-  //       });
-  //     }, 0); 
-    
-  //     };
 
 
   const startGame = () => {
@@ -174,8 +148,16 @@ import { renderCards } from './utils/renderCards';
     const restartGame = () => {
       setGameState("intro")
       setVideoWatched(true); // Skip video on replay
+      setScore(0);
     };
 
+    const quitGame = () => {
+      // This is used if user wants to exit completely
+      setGameState("intro");
+      setVideoWatched(false); // so next time, we see the intro
+      setScore(0);
+      setBestScore(0); // you can decide if you want to reset bestScore
+    };
   
 
 
@@ -212,23 +194,27 @@ import { renderCards } from './utils/renderCards';
           />
         )}
 
-        {gameState === "won" && (
-             <div>
-             <h2>You Won!</h2>
-             <p>Your final score: {score}</p>
-             <p>Best score: {bestScore}</p>
-             <button onClick={restartGame}>Back to Intro</button>
-           </div>
-         )}
-   
-         {gameState === "lost" && (
-           <div>
-             <h2>Game Over!</h2>
-             <p>Your final score: {score}</p>
-             <p>Best score: {bestScore}</p>
-             <button onClick={restartGame}>Back to Intro</button>
-           </div>
-         )}
+      {/* WON -> SHOW RESULT SCREEN */}
+      {gameState === "won" && (
+        <ResultScreen
+          isWin={true}
+          score={score}
+          bestScore={bestScore}
+          onPlayAgain={restartGame}
+          onQuit={quitGame}
+        />
+      )}
+
+      {/* LOST -> SHOW RESULT SCREEN */}
+      {gameState === "lost" && (
+        <ResultScreen
+          isWin={false}
+          score={score}
+          bestScore={bestScore}
+          onPlayAgain={restartGame}
+          onQuit={quitGame}
+        />
+      )}
        </div>
       );
   }
