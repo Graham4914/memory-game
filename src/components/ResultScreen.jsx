@@ -2,8 +2,8 @@ import React from "react";
 import "/src/styles/ResultScreen.css"
 function ResultScreen({ isWin, score, bestScore, onPlayAgain, onQuit }) {
     return (
-      <div className="result-container">
-      <div className="result-overlay">
+      // <div className="result-container">
+      <div className="result-overlay result-fade-up">
         {/* If you want a background image, you can do it via CSS or inline styling */}
         {/* e.g., style={{ background: "url('/images/win-bg.jpg') center/cover" }} */}
   
@@ -23,7 +23,7 @@ function ResultScreen({ isWin, score, bestScore, onPlayAgain, onQuit }) {
         </div>
       
       </div>
-      </div>
+      // </div>
     );
   }
   

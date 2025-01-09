@@ -1,63 +1,90 @@
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; 
 }
 
-.result-container {
+.video-overlay-container {
   position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: #000; 
 }
- .result-overlay {
+
+.video-overlay-container video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.result-overlay {
   position: absolute;
-  top: 30%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); 
-  text-align: center;              
-  color: #fff;  
- }
-
- 
- .result-options {
-  display: flex;
-  gap: 1rem;         
-  justify-content: center;
-  margin-top: 1.5rem; 
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 400px;
+  max-width: 800px;
+  /* min-width: 500px; <-- remove or keep if you want a minimum. 
+                            But for small screens, it might push off screen. */
 }
 
-.result-button {
-  font-size: 1.2rem;              
-  padding: 1rem 2rem;
-  border: 2px solid #fff;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  cursor: pointer;
+.result-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #fff;
 }
 
-
- 
-
-.result-button:hover {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.result-story{
+.result-story {
   font-size: 1.5rem;
   font-weight: 600;
   color: #fff;
-  background: rgba(0, 0, 0, 0.4); 
-  padding: 1rem; 
-  border-radius: 8px;       
+  margin: 1rem 0;
+ 
+}
+
+.result-options {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.result-button {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  border: 2px solid #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.result-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Fade-up animation if you want it */
+@keyframes resultFadeInUp {
+  0% {
+    opacity: 0;
+    /* Start slightly lower by adjusting the Y offset
+       e.g., translate(-50%, -40%) means you’re 10% 'above' the final? 
+       Or you can do -60% to start even further below. */
+    transform: translate(-50%, -30%);
   }
-  .result-title {
-    font-size: 3.5rem;  
-    margin-bottom: 1rem;
-  
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
   }
-  
+}
+.result-fade-up {
+  animation: resultFadeInUp 1.2s ease forwards;
+}

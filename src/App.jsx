@@ -3,6 +3,7 @@ import IntroScreen from './components/IntroScreen';
 import GameScreen from './components/GameScreen';
 import ResultScreen from './components/ResultScreen';
 import { renderCards } from './utils/renderCards';
+import VideoClip from './components/VideoClip';
 
   function App() {
   //Gamestate - Appflow
@@ -20,6 +21,11 @@ import { renderCards } from './utils/renderCards';
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+
+    // -------------- For parallel loading --------------
+    const [videoEnded, setVideoEnded] = useState(false);
+    const [deckLoaded, setDeckLoaded] = useState(false);
+  
 
   function shuffleAndRender() {
     console.log("Shuffling cards with current state:", { cards, selectedCards });
@@ -55,7 +61,7 @@ import { renderCards } from './utils/renderCards';
       console.log("New card selected:", cardCode);
       const newSelected = [...selectedCards, cardCode];
       setSelectedCards(newSelected);
-      // console.log("Updated selected cards:", newSelected);
+   
       setTimeout(() => {
         setScore((prevScore) => {
           const newScore = prevScore + 1;
@@ -72,14 +78,19 @@ import { renderCards } from './utils/renderCards';
     }
   };
 
+  
 
   const startGame = () => {
     //Reset states
     setSelectedCards([]);
     setScore(0);
-    setGameState("loading");
     setVisibleCards([]); 
+    setVideoEnded(false);
+    setDeckLoaded(false);
+    setGameState("loading");
 
+  // Now go to "loading"
+  setGameState("loading");
     //Fetch a new shuffeled deck
     fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1")
     .then((response) => response.json())
@@ -114,7 +125,8 @@ import { renderCards } from './utils/renderCards';
           });
           console.log("All card images preloaded");
 
-            setGameState("playing");
+            // setGameState("playing");
+            setDeckLoaded(true);
 
           } else {
             console.error("Error drawing cards: ",data);
@@ -127,22 +139,29 @@ import { renderCards } from './utils/renderCards';
     }, [deckId, gameState]);
 
     useEffect(() => {
-      if (gameState === "playing" && cards.length > 0) {
-        console.log("Cards are ready. Calling shuffleAndRender.");
+      if (gameState === "loading" && deckLoaded && videoEnded) {
         shuffleAndRender();
+        setGameState("playing");
       }
-    }, [cards, gameState]);
+    }, [gameState, deckLoaded, videoEnded]);
+
+    // useEffect(() => {
+    //   if (gameState === "playing" && cards.length > 0) {
+    //     console.log("Cards are ready. Calling shuffleAndRender.");
+    //     shuffleAndRender();
+    //   }
+    // }, [cards, gameState]);
 
     const handleWin = () => {
       console.log("Current Score:", score, "Best Score:", bestScore);
-      setGameState("won");
+      setGameState("winTransition");
       if (score > bestScore) {
         setBestScore(score);
       }
     };
 
     const handleLose = () => {
-      setGameState("lost");
+      setGameState("loseTransition");
     };
 
     const restartGame = () => {
@@ -171,7 +190,14 @@ import { renderCards } from './utils/renderCards';
           )}
 
         {gameState === "loading" && (
-         <p>Loading deck... Please wait.</p>
+           <VideoClip
+           src="/videos/001EnterCasino.mp4"
+           autoPlay
+           loop={false}
+           muted={false}
+           onEnded={() => setVideoEnded(true)}
+           style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
+         />
         )}
 
           
@@ -193,6 +219,53 @@ import { renderCards } from './utils/renderCards';
           cardsToWin={getWinCondition()}
           />
         )}
+
+{gameState === "winTransition" && (
+  <div className="video-overlay-container">
+    <VideoClip
+      src="/videos/spywin.mp4"
+      autoPlay
+      loop={false}
+      muted={false}
+      // onEnded={() => setGameState("won")} // optional
+      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+    />
+
+    {/* Overlaid Result */}
+  
+      <ResultScreen
+        isWin
+        score={score}
+        bestScore={bestScore}
+        onPlayAgain={restartGame}
+        onQuit={quitGame}
+      />
+    
+  </div>
+)}
+
+{gameState === "loseTransition" && (
+  <div className="video-overlay-container">
+    <VideoClip
+      src="/videos/spylose.mp4"
+      autoPlay
+      loop={false}
+      muted={false}
+      // e.g. onEnded={() => setGameState("lost")}
+      style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
+    />
+
+    
+      <ResultScreen
+        isWin={false}
+        score={score}
+        bestScore={bestScore}
+        onPlayAgain={restartGame}
+        onQuit={quitGame}
+      />
+
+  </div>
+)}
 
       {/* WON -> SHOW RESULT SCREEN */}
       {gameState === "won" && (
