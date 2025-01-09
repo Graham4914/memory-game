@@ -23,7 +23,7 @@ html, body {
 .result-overlay {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 25%;
   transform: translate(-50%, -50%);
   text-align: center;
   z-index: 10;
@@ -38,7 +38,7 @@ html, body {
 
 .result-title {
   font-size: 3rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   color: #fff;
 }
 
@@ -48,6 +48,13 @@ html, body {
   color: #fff;
   margin: 1rem 0;
  
+}
+
+.result-message{
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #fff;
+  margin: 1rem 0;
 }
 
 .result-options {

@@ -145,13 +145,7 @@ import VideoClip from './components/VideoClip';
       }
     }, [gameState, deckLoaded, videoEnded]);
 
-    // useEffect(() => {
-    //   if (gameState === "playing" && cards.length > 0) {
-    //     console.log("Cards are ready. Calling shuffleAndRender.");
-    //     shuffleAndRender();
-    //   }
-    // }, [cards, gameState]);
-
+   
     const handleWin = () => {
       console.log("Current Score:", score, "Best Score:", bestScore);
       setGameState("winTransition");
@@ -237,6 +231,8 @@ import VideoClip from './components/VideoClip';
         isWin
         score={score}
         bestScore={bestScore}
+        difficulty={difficulty}
+        cardsToWin={getWinCondition()}
         onPlayAgain={restartGame}
         onQuit={quitGame}
       />
@@ -257,8 +253,11 @@ import VideoClip from './components/VideoClip';
 
     
       <ResultScreen
+
         isWin={false}
         score={score}
+        difficulty={difficulty}
+        cardsToWin={getWinCondition()}
         bestScore={bestScore}
         onPlayAgain={restartGame}
         onQuit={quitGame}
