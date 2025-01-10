@@ -13,7 +13,9 @@ function GameScreen({
     shuffleAndRender,
     onLose,
     difficulty,
-    cardsToWin,   
+    cardsToWin,  
+    muted,
+    setMuted, 
   }) {
   
     
@@ -108,7 +110,9 @@ function GameScreen({
         <p>Score:{score}</p> 
         <p>Best Score:{bestScore}</p> 
       </div>
-
+      <button className="sound-toggle-btn" onClick={() => setMuted(!muted)}>
+        {muted ? "Sound: OFF" : "Sound: ON"}
+      </button>
 
        <div className="card-grid">
         {visibleCards.map((card) => (

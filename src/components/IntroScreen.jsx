@@ -87,7 +87,7 @@ function IntroScreen({ onStart, setDifficulty, videoWatched }) {
         src={["/audio/spyintro.wav"]}
         playing={soundPlaying}
         loop
-        volume={0.1}
+        volume={0.05}
         mute={muted}
       />
 

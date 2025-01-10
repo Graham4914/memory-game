@@ -192,6 +192,8 @@ import VideoClip from './components/VideoClip';
            onEnded={() => setVideoEnded(true)}
            style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
          />
+          
+         
         )}
 
           
