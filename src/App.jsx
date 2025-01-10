@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import ReactHowler from 'react-howler';
 import IntroScreen from './components/IntroScreen';
 import GameScreen from './components/GameScreen';
 import ResultScreen from './components/ResultScreen';
 import { renderCards } from './utils/renderCards';
 import VideoClip from './components/VideoClip';
+import SoundToggleButton from './components/SoundToggleButton';
 
   function App() {
   //Gamestate - Appflow
@@ -26,6 +28,12 @@ import VideoClip from './components/VideoClip';
     const [videoEnded, setVideoEnded] = useState(false);
     const [deckLoaded, setDeckLoaded] = useState(false);
   
+    //---gloabal sound control---
+    const [soundPlaying, setSoundPlaying] = useState(true); 
+    const [muted, setMuted] = useState(false);
+
+
+
 
   function shuffleAndRender() {
     console.log("Shuffling cards with current state:", { cards, selectedCards });
@@ -170,6 +178,8 @@ import VideoClip from './components/VideoClip';
       setVideoWatched(false); // so next time, we see the intro
       setScore(0);
       setBestScore(0); // you can decide if you want to reset bestScore
+      setSoundPlaying(false); 
+      setMuted(true);
     };
   
 
@@ -180,10 +190,13 @@ import VideoClip from './components/VideoClip';
           <IntroScreen onStart={startGame}
            setDifficulty={setDifficulty}
            videoWatched={videoWatched}
+           muted={muted}
+           setMuted={setMuted}
             />
           )}
 
         {gameState === "loading" && (
+          <>
            <VideoClip
            src="/videos/001EnterCasino.mp4"
            autoPlay
@@ -192,7 +205,16 @@ import VideoClip from './components/VideoClip';
            onEnded={() => setVideoEnded(true)}
            style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
          />
-          
+          <SoundToggleButton muted={muted} setMuted={setMuted} />
+
+                  <ReactHowler
+          src={["/audio/walking-at-night.mp3"]}
+          playing={soundPlaying}
+          loop
+          volume={0.55}
+          mute={muted}
+        />
+          </>
          
         )}
 
@@ -213,6 +235,8 @@ import VideoClip from './components/VideoClip';
           onLose={handleLose}
           difficulty={difficulty}
           cardsToWin={getWinCondition()}
+          muted={muted}
+          setMuted={setMuted}
           />
         )}
 
@@ -226,7 +250,7 @@ import VideoClip from './components/VideoClip';
       // onEnded={() => setGameState("won")} // optional
       style={{ width: "100%", height: "100%", objectFit: "cover" }}
     />
-
+  <SoundToggleButton muted={muted} setMuted={setMuted} />
     {/* Overlaid Result */}
   
       <ResultScreen
@@ -237,6 +261,8 @@ import VideoClip from './components/VideoClip';
         cardsToWin={getWinCondition()}
         onPlayAgain={restartGame}
         onQuit={quitGame}
+        muted={muted}
+        setMuted={setMuted}
       />
     
   </div>
@@ -252,7 +278,7 @@ import VideoClip from './components/VideoClip';
       // e.g. onEnded={() => setGameState("lost")}
       style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
     />
-
+    <SoundToggleButton muted={muted} setMuted={setMuted} />   
     
       <ResultScreen
 
@@ -263,6 +289,8 @@ import VideoClip from './components/VideoClip';
         bestScore={bestScore}
         onPlayAgain={restartGame}
         onQuit={quitGame}
+        muted={muted}
+        setMuted={setMuted}
       />
 
   </div>

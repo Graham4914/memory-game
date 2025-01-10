@@ -2,24 +2,27 @@ import React, { useState, useRef } from "react";
 import ReactHowler from "react-howler";
 import "/src/styles/IntroScreen.css";
 import VideoClip from "./VideoClip";
+import SoundToggleButton from "./SoundToggleButton";
 
 // A quick spinner component for demonstration
 function Spinner() {
   return <div className="spinner">Loading cinematic assets...</div>;
 }
 
-function IntroScreen({ onStart, setDifficulty, videoWatched }) {
+function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted }) {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [introStarted, setIntroStarted] = useState(false);
   const [videoEnded, setVideoEnded] = useState(videoWatched);
-  const [muted, setMuted] = useState(false);
+  
   const [selectedDifficulty, setSelectedDifficulty] = useState(null);
-  const [soundPlaying, setSoundPlaying] = useState(true); 
+  
 
   const videoRef = useRef(null);
 
   const handleWatchIntro = () => {
     setIntroStarted(true);
+    setMuted(false);
+   
     if (videoRef.current) {
       videoRef.current.play();
     }
@@ -85,16 +88,13 @@ function IntroScreen({ onStart, setDifficulty, videoWatched }) {
       {/* 3) ReactHowler for spy track */}
       <ReactHowler
         src={["/audio/spyintro.wav"]}
-        playing={soundPlaying}
+        // playing={soundPlaying}
         loop
         volume={0.05}
         mute={muted}
       />
-
-      {/* 4) Sound toggle in top-right */}
-      <button className="sound-toggle-btn" onClick={() => setMuted(!muted)}>
-        {muted ? "Sound: OFF" : "Sound: ON"}
-      </button>
+      <SoundToggleButton muted={muted} setMuted={setMuted} />
+    
 
       {/* 5) Show overlay after video ends */}
       {videoEnded && (

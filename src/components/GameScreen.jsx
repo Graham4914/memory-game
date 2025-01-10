@@ -1,7 +1,9 @@
 import React, { memo, useState, useEffect } from "react";
+import ReactHowler from "react-howler";
 import "/src/styles/GameScreen.css";
 import Card from "./card";
 import "/src/styles/CardAnimate.css";
+import SoundToggleButton from "./SoundToggleButton";
 
 
 
@@ -110,9 +112,7 @@ function GameScreen({
         <p>Score:{score}</p> 
         <p>Best Score:{bestScore}</p> 
       </div>
-      <button className="sound-toggle-btn" onClick={() => setMuted(!muted)}>
-        {muted ? "Sound: OFF" : "Sound: ON"}
-      </button>
+    
 
        <div className="card-grid">
         {visibleCards.map((card) => (
@@ -125,6 +125,13 @@ function GameScreen({
           />
         ))}
       </div>
+        <ReactHowler
+          src={["/audio/gameplay-music.wav"]}
+          playing={!muted}
+          loop
+          volume={0.17}
+        />
+      <SoundToggleButton muted={muted} setMuted={setMuted} />
     </div>
   );
   
