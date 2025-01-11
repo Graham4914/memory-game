@@ -4,6 +4,7 @@ import "/src/styles/GameScreen.css";
 import Card from "./card";
 import "/src/styles/CardAnimate.css";
 import SoundToggleButton from "./SoundToggleButton";
+import ButtonWithSound from "./ButtonWithSound";
 
 
 
@@ -24,18 +25,27 @@ function GameScreen({
   const [flipPhase, setFlipPhase] = useState(0);
   const [cardsFlippedCount, setCardsFlippedCount] = useState(0);
 
+  const [playFlipSound, setPlayFlipSound] = useState(false);
+
    
     const handleUserClick = (cardCode) => {
+
+      setPlayFlipSound(false)
+      setTimeout(() => setPlayFlipSound(true), 0);
       onCardClick(cardCode);
       setFlipPhase(1);
       setCardsFlippedCount(0);
+      
     };
 
 
     const handlePhaseComplete = (phase) => {
-      if (phase === 1) {
+      if (phase === 1 || phase === 2) {
         setCardsFlippedCount((count) => count + 1);
-      } else if (phase === 2) {
+      
+      
+       
+        
       }
     };
 
@@ -44,13 +54,16 @@ function GameScreen({
     if (flipPhase === 1 && cardsFlippedCount === visibleCards.length) {
      
       shuffleAndRender();
+
       
       setFlipPhase(2);
+      
     
       setCardsFlippedCount(0);
     } else if (flipPhase === 2 && cardsFlippedCount === visibleCards.length) {
       
       setFlipPhase(0);
+     
     }
   }, [flipPhase, cardsFlippedCount, visibleCards, shuffleAndRender]);
     
@@ -109,8 +122,8 @@ function GameScreen({
       </div>
       
       <div className="score-container">
-        <p>Score:{score}</p> 
-        <p>Best Score:{bestScore}</p> 
+        <p className="score-style">Score: {score}</p> 
+        <p className="best-score-style">Best Score: {bestScore}</p> 
       </div>
     
 
@@ -131,6 +144,13 @@ function GameScreen({
           loop
           volume={0.17}
         />
+
+            <ReactHowler
+                src={["/audio/card-flip2.mp3"]}
+                playing={playFlipSound && !muted}
+                onEnd={() => setPlayFlipSound(false)}  // Reset after sound
+                volume={0.4}
+            />
       <SoundToggleButton muted={muted} setMuted={setMuted} />
     </div>
   );

@@ -45,7 +45,23 @@ body {
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
   }
-
+header {
+position: absolute;
+ top: 0;
+ left: 0;
+ margin: 1rem;
+ max-width: 300px;
+ 
+}
+  .game-title {
+    text-align: center;
+    margin: 0;
+    font-size: 4rem;
+    font-weight: 600;
+    border: solid 1px #fff;
+    padding: 1rem;
+    background-color:  rgba(0, 0, 0, 0.7);
+  }
   .watch-intro-btn, button.intro-button {
     font-size: 1.5rem;
     padding: 1rem 2rem;

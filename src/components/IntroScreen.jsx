@@ -3,6 +3,7 @@ import ReactHowler from "react-howler";
 import "/src/styles/IntroScreen.css";
 import VideoClip from "./VideoClip";
 import SoundToggleButton from "./SoundToggleButton";
+import ButtonWithSound from "./ButtonWithSound";
 
 // A quick spinner component for demonstration
 function Spinner() {
@@ -20,6 +21,7 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted }) 
   const videoRef = useRef(null);
 
   const handleWatchIntro = () => {
+    
     setIntroStarted(true);
     setMuted(false);
    
@@ -33,12 +35,15 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted }) 
 };
 
   
-  const handleDifficultySelect = (diff) => {
-    setSelectedDifficulty(diff);
-    setDifficulty(diff);
-    onStart();
-  };
+const handleDifficultySelect = (diff) => {
+  setSelectedDifficulty(diff);
 
+  // 🔊 Add slight delay to allow click sound to play
+  setTimeout(() => {
+    setDifficulty(diff);
+    onStart();  // Move to the next game state
+  }, 200);  // 200ms delay (adjust if needed)
+};
 
 
 
@@ -56,12 +61,24 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted }) 
    
       {!introStarted &&  (
         <div className="intro-background">
+         
+          
           {/* If the video is loaded, show "Watch Intro"; otherwise, show Spinner */}
           {!videoLoaded && <Spinner />}
           {videoLoaded && !videoEnded && (
-            <button className="intro-button watch-intro-btn" onClick={handleWatchIntro}>
+            <>
+             <header>
+            <h1 className="game-title">Spy Memory Game</h1>
+          </header>
+            <ButtonWithSound className="intro-button watch-intro-btn" onClick={handleWatchIntro}>
               Watch Intro
-            </button>
+            </ButtonWithSound>
+            </>
+            
+           
+            
+            
+           
           )}
         </div>
       )}
@@ -99,24 +116,46 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted }) 
       {/* 5) Show overlay after video ends */}
       {videoEnded && (
         <div className="intro-overlay">
-          <h1 className="intro-title fade-up">Your Drink’s Been Spiked 001.</h1>
-          <p className="intro-story fade-up">The clock is ticking. You have to outplay the house in a lethal game of wits and memory to secure the antidote.<br />
-          One rule: <strong>Never pick the same card twice</strong>. One misstep—and the poison wins.</p>
+          <h1 className="intro-title fade-up">Your Drink’s Been Spiked 001</h1>
+          <p className="intro-story fade-up">The poison clock is ticking. You must win a lethal game of wits and memory to secure the antidote before time runs out...<br />
+          One rule: <strong>Never pick the same card twice</strong></p>
 
           {/* Difficulty Selection */}
           <div className="difficulty-options fade-up">
-            <button className={`difficulty-btn ${!selectedDifficulty ? "pulse" : ""}`} onClick={() => handleDifficultySelect("easy")}>Easy</button>
-            <button className={`difficulty-btn ${!selectedDifficulty ? "pulse" : ""}`} onClick={() => handleDifficultySelect("medium")}>Medium</button>
-            <button className={`difficulty-btn ${!selectedDifficulty ? "pulse" : ""}`} onClick={() => handleDifficultySelect("hard")}>Hard</button>
-            <button className={`difficulty-btn ${!selectedDifficulty ? "pulse" : ""}`} onClick={() => handleDifficultySelect("super-spy")}>Super Spy</button>
+          <ButtonWithSound
+    className={`difficulty-btn ${!selectedDifficulty ? "pulse" : ""}`}
+    onClick={() => handleDifficultySelect("easy")}
+    muted={muted}
+  >
+    Easy
+  </ButtonWithSound>
+
+  <ButtonWithSound
+    className={`difficulty-btn ${!selectedDifficulty ? "pulse" : ""}`}
+    onClick={() => handleDifficultySelect("medium")}
+    muted={muted}
+  >
+    Medium
+  </ButtonWithSound>
+
+  <ButtonWithSound
+    className={`difficulty-btn ${!selectedDifficulty ? "pulse" : ""}`}
+    onClick={() => handleDifficultySelect("hard")}
+    muted={muted}
+  >
+    Hard
+  </ButtonWithSound>
+
+  <ButtonWithSound
+    className={`difficulty-btn ${!selectedDifficulty ? "pulse" : ""}`}
+    onClick={() => handleDifficultySelect("super-spy")}
+    muted={muted}
+  >
+    Super Spy
+  </ButtonWithSound>
           </div>
 
-          {/* <button 
-          className={`intro-button ${selectedDifficulty ? "pulse" : ""}`}
-          onClick={handleEnterCasino}
-          >
-            Enter the Casino
-          </button> */}
+      
         </div>
       )}
     </div>

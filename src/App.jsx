@@ -6,6 +6,7 @@ import ResultScreen from './components/ResultScreen';
 import { renderCards } from './utils/renderCards';
 import VideoClip from './components/VideoClip';
 import SoundToggleButton from './components/SoundToggleButton';
+import ButtonWithSound from './components/ButtonWithSound';
 
   function App() {
   //Gamestate - Appflow
@@ -209,10 +210,11 @@ import SoundToggleButton from './components/SoundToggleButton';
 
                   <ReactHowler
           src={["/audio/walking-at-night.mp3"]}
-          playing={soundPlaying}
+          playing={!muted}
           loop
-          volume={0.55}
-          mute={muted}
+          volume={1.7}
+          muted={muted}
+      
         />
           </>
          
@@ -304,6 +306,7 @@ import SoundToggleButton from './components/SoundToggleButton';
           bestScore={bestScore}
           onPlayAgain={restartGame}
           onQuit={quitGame}
+          muted={muted}
         />
       )}
 
@@ -315,6 +318,7 @@ import SoundToggleButton from './components/SoundToggleButton';
           bestScore={bestScore}
           onPlayAgain={restartGame}
           onQuit={quitGame}
+          muted={muted}
         />
       )}
        </div>

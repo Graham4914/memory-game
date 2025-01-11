@@ -1,10 +1,15 @@
 import React from "react";
+import ButtonWithSound from "./ButtonWithSound";
 
 function SoundToggleButton({ muted, setMuted }) {
   return (
-    <button className="sound-toggle-btn" onClick={() => setMuted(!muted)}>
-      {muted ? "Sound: OFF" : "Sound: ON"}
-    </button>
+    <ButtonWithSound
+    onClick={() => setMuted(!muted)}
+    className="sound-toggle-btn"
+    muted={muted}  // 🔊 Pass the muted state
+  >
+    {muted ? "Sound: OFF" : "Sound: ON"}
+  </ButtonWithSound>
   );
 }
 

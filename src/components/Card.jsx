@@ -1,7 +1,9 @@
 import React, { memo } from "react";
 import { motion } from "framer-motion";
 
+
 const Card = memo(({ card, flipPhase, onPhaseComplete, onClick }) => {
+
  
   let targetRotation = 180;
   if (flipPhase === 1) {
@@ -15,7 +17,7 @@ const Card = memo(({ card, flipPhase, onPhaseComplete, onClick }) => {
       className="card-inner"
       onClick={onClick} 
       animate={{ rotateY: targetRotation }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
    
       onAnimationComplete={() => {
         if (flipPhase !== 0 && onPhaseComplete) {
