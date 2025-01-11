@@ -68,8 +68,11 @@ const handleDifficultySelect = (diff) => {
           {videoLoaded && !videoEnded && (
             <>
              <header>
-            <h1 className="game-title">Spy Memory Game</h1>
-          </header>
+              <div className="game-logo-container">
+  
+              </div>
+            
+             </header>
             <ButtonWithSound className="intro-button watch-intro-btn" onClick={handleWatchIntro}>
               Watch Intro
             </ButtonWithSound>
@@ -116,10 +119,12 @@ const handleDifficultySelect = (diff) => {
       {/* 5) Show overlay after video ends */}
       {videoEnded && (
         <div className="intro-overlay">
-          <h1 className="intro-title fade-up">Your Drink’s Been Spiked 001</h1>
-          <p className="intro-story fade-up">The poison clock is ticking. You must win a lethal game of wits and memory to secure the antidote before time runs out...<br />
+          <div className="intro-content-container fade-up">
+          <h1 className="intro-title">Your Drink’s Been Spiked 001</h1>
+          <p className="intro-story">The poison clock is ticking. You must win a lethal game of wits and memory to secure the antidote before time runs out...<br />
           One rule: <strong>Never pick the same card twice</strong></p>
-
+          </div>
+          
           {/* Difficulty Selection */}
           <div className="difficulty-options fade-up">
           <ButtonWithSound

@@ -49,19 +49,23 @@ header {
 position: absolute;
  top: 0;
  left: 0;
- margin: 1rem;
- max-width: 300px;
- 
+ margin: 2rem;
+ width: 125px;
+ height: 125px;
+ min-width: none;
+ background-color:  rgba(0, 0, 0, 1);
+ border-radius: 35px;
+ background-image: url("/public/images/spymemorylogo.webp") ;
+ background-size: cover;
+ background-repeat: no-repeat;
+ background-position: center;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding: 1rem;
 }
-  .game-title {
-    text-align: center;
-    margin: 0;
-    font-size: 4rem;
-    font-weight: 600;
-    border: solid 1px #fff;
-    padding: 1rem;
-    background-color:  rgba(0, 0, 0, 0.7);
-  }
+
+
   .watch-intro-btn, button.intro-button {
     font-size: 1.5rem;
     padding: 1rem 2rem;
@@ -145,11 +149,7 @@ position: absolute;
 }
 
 
-.intro-title {
-  font-size: 3.5rem;  
-  margin-bottom: 1rem;
 
-}
 
 .intro-button {
     margin-top: 1rem;
@@ -171,12 +171,20 @@ position: absolute;
     font-size: 1.2rem;
   }
 
+  .intro-content-container.fade-up{
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+  }
+  .intro-title {
+    font-size: 3.5rem;  
+    margin-bottom: 1rem;
+  
+  }
  
   .intro-story{
   font-size: 1.5rem;
   font-weight: 600;
   color: #fff;
-  background: rgba(0, 0, 0, 0.4); 
   padding: 1rem; 
   border-radius: 8px;       
   }
