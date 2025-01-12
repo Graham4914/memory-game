@@ -75,7 +75,7 @@ function GameScreen({
       easy: 40, 
       medium: 90, 
       hard: 180, 
-      "super-spy": 300, 
+      "super-spy": 30000, 
     };
 
 
@@ -111,33 +111,43 @@ function GameScreen({
 
   return (
     <div className="game-screen">
-      <div className="timer-container">
-        <h2>Poison Timer</h2>
-        <p className="timer">{formatTime(timer)}</p>
-      </div>
 
-      <div className="level-container">
-        <h2>Level: {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</h2>
-        <p>Cards to Win: {cardsToWin}</p> {/* Dynamically display cardsToWin */}
+      <div className="header-container">
+        <div className="timer-container">
+          <h2>Poison Timer</h2>
+          <p className="timer">{formatTime(timer)}</p>
+        </div>
+
+        <div className="level-container">
+          <h2>Level: {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</h2>
+          <p>Cards to Win: {cardsToWin}</p> {/* Dynamically display cardsToWin */}
+        </div>
+      
+        <div className="score-container">
+          <p className="score-style">Score: {score}</p> 
+          <p className="best-score-style">Best Score: {bestScore}</p> 
+        </div>
       </div>
       
-      <div className="score-container">
-        <p className="score-style">Score: {score}</p> 
-        <p className="best-score-style">Best Score: {bestScore}</p> 
-      </div>
-    
 
-       <div className="card-grid">
-        {visibleCards.map((card) => (
-          <Card
-            key={card.code}
-            card={card}
-            flipPhase={flipPhase}
-            onPhaseComplete={handlePhaseComplete}
-            onClick={() => handleUserClick(card.code)}
-          />
-        ))}
+
+
+    <div className="card-grid-wrapper">
+      <div className="card-grid">
+              {visibleCards.map((card) => (
+                <Card
+                  key={card.code}
+                  card={card}
+                  flipPhase={flipPhase}
+                  onPhaseComplete={handlePhaseComplete}
+                  onClick={() => handleUserClick(card.code)}
+                />
+              ))}
+            </div>
       </div>
+
+         
+
         <ReactHowler
           src={["/audio/gameplay-music.wav"]}
           playing={!muted}
@@ -151,7 +161,11 @@ function GameScreen({
                 onEnd={() => setPlayFlipSound(false)}  // Reset after sound
                 volume={0.4}
             />
-      <SoundToggleButton muted={muted} setMuted={setMuted} />
+
+            <footer>
+            <SoundToggleButton muted={muted} setMuted={setMuted} />
+            </footer>
+      
     </div>
   );
   

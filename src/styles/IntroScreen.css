@@ -55,7 +55,7 @@ position: absolute;
  min-width: none;
  background-color:  rgba(0, 0, 0, 1);
  border-radius: 35px;
- background-image: url("/public/images/spymemorylogo.webp") ;
+ background-image: url("/images/spymemorylogo.webp") ;
  background-size: cover;
  background-repeat: no-repeat;
  background-position: center;

@@ -1,0 +1,54 @@
+/* Adjust the card grid for responsiveness */
+
+  /* Wrap UI elements in a flexible layout */
+.game-screen {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  /* Left-side: Timer */
+  .timer-container {
+    flex: 0 1 auto;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
+  
+  /* Right-side: Level and Score */
+  .score-container, .level-container {
+    flex: 0 1 auto;
+    text-align: right;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
+  
+  /* Sound Toggle Button */
+  .sound-toggle-btn {
+    position: static; /* Remove absolute positioning */
+    margin-top: 1rem;
+    align-self: flex-end;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  /* Tablets and smaller desktops */
+@media (max-width: 1024px) {
+    .card {
+      width: 12vw;
+    }
+  
+    .timer-container, .score-container, .level-container {
+      font-size: 1rem;
+    }
+  
+    .sound-toggle-btn {
+      font-size: 0.9rem;
+    }
+  }
+  
+ 

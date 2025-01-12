@@ -1,73 +1,84 @@
 /* GameScreen.css */
+.header-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  padding: 2rem 1rem 0;
+  box-sizing: border-box;
+}
+
+
+.game-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Timer styles */
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0 ;
+  color: red; 
+  text-align: center;
+}
+
+.timer-container h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.timer {
+  font-size: 2rem;
+  font-family: "Courier New", Courier, monospace; /* Digital clock style */
+  margin-top: 5px;
+  text-align: left;
+}
+
+
+
+/*score styles*/
 
   .score-container {
-    position: absolute;
-    top: 40%; 
-    right: 10px; 
-    transform: translateY(-50%); 
+    display: flex;
+    flex-direction: column;
+
     font-size: 1.5rem;
     color: #fff;
-    /* background-color: rgba(0, 0, 0, 0.7); */
-    padding: 10px 15px;
     border-radius: 8px;
     text-align: right;
     font-weight: bold;
   }
-  
-  .score-timer-container {
-    position: absolute;
-    top: 10%;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 20px;
-    font-size: 1.2rem;
-    color: #fff;
-    font-family: Arial, sans-serif;
-  }
-
   .score-style {
     font-size: 2.5rem;
     text-align: right;
+    margin: 0;
   }
   
   .best-score-style {
     font-size: 1.5rem;
     text-align: right;
+    margin: 0;
   }
-  .timer {
-    text-align: left;
-  }
-  
+ 
   .score {
     text-align: right;
   }
 
-  .timer-container {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: red; 
-    text-align: center;
-  }
-  
-  .timer-container h2 {
-    font-size: 1.5rem;
-    margin: 0;
-    text-transform: uppercase;
-  }
-  
-  .timer {
-    font-size: 2rem;
-    font-family: "Courier New", Courier, monospace; /* Digital clock style */
-    margin-top: 5px;
-  }
+/*level styles*/
   
   .level-container {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0 ;
+    text-align: center;
     color: #fff;
   }
   
@@ -82,9 +93,7 @@
   }
   
   .sound-toggle-btn {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
+   
     z-index: 100;
     padding: 0.5rem 1rem;
     background-color: rgba(0, 0, 0, 0.6);
@@ -98,3 +107,13 @@
     background-color: rgba(0, 0, 0, 0.8);
   }
   
+  footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    flex-grow: 1;
+    padding-bottom: 20px;
+  }
