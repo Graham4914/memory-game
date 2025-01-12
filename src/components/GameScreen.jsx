@@ -118,15 +118,17 @@ function GameScreen({
           <p className="timer">{formatTime(timer)}</p>
         </div>
 
-        <div className="level-container">
-          <h2>Level: {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</h2>
-          <p>Cards to Win: {cardsToWin}</p> {/* Dynamically display cardsToWin */}
-        </div>
-      
         <div className="score-container">
           <p className="score-style">Score: {score}</p> 
           <p className="best-score-style">Best Score: {bestScore}</p> 
         </div>
+
+        <div className="level-container">
+          <h2>LEVEL: {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</h2>
+          <p>Cards to Win: {cardsToWin}</p> {/* Dynamically display cardsToWin */}
+        </div>
+      
+
       </div>
       
 
@@ -162,7 +164,7 @@ function GameScreen({
                 volume={0.4}
             />
 
-            <footer>
+            <footer >
             <SoundToggleButton muted={muted} setMuted={setMuted} />
             </footer>
       
