@@ -17,7 +17,7 @@ import React, { useRef, useState, useEffect, forwardRef} from "react";
  *   minPlaybackRate  (number)   - slowest speed we drop to
  *   slowdownInterval (number)   - how many ms between each speed decrement
  */
-export default function VideoClip({
+const VideoClip = forwardRef(({
   className = "",
   src,
   autoPlay = true,
@@ -25,15 +25,13 @@ export default function VideoClip({
   muted = true,
   onEnded,
   style = {},
-  onCanPlayThrough = "",
-
-  
+  onCanPlayThrough,
   enableSlowdown = false,
   nearEndThreshold = 1.0,
   minPlaybackRate = 0.5,
   slowdownInterval = 100,
-}) {
-  const videoRef = useRef(null);
+}, ref) => {
+  const videoRef = ref || useRef(null);
 
   
   const [isNearEnd, setIsNearEnd] = useState(false);
@@ -105,4 +103,5 @@ export default function VideoClip({
     />
     
   );
-}
+});
+export default VideoClip;

@@ -32,8 +32,7 @@ html, body {
   background-color: rgba(0, 0, 0, 0.4);
   width: 400px;
   max-width: 800px;
-  /* min-width: 500px; <-- remove or keep if you want a minimum. 
-                            But for small screens, it might push off screen. */
+
 }
 
 .result-title {
@@ -94,4 +93,47 @@ html, body {
 }
 .result-fade-up {
   animation: resultFadeInUp 1.2s ease forwards;
+}
+
+@media (max-width: 600px) {
+
+  /* Result Overlay */
+.result-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  max-width: 80%;
+}
+
+/* Result Buttons */
+.result-options {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.result-button {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  border: 2px solid #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+  .result-overlay {
+    width: 90%;
+    padding: 1rem;
+  }
+
+  .result-button {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
 }

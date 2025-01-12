@@ -9,13 +9,24 @@ body {
   height: 100%;
   overflow: hidden; 
 }
-
+/* 
 .intro-container {
   position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   background-color: #000; 
+} */
+
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
 }
 
 
@@ -139,14 +150,14 @@ position: absolute;
   }
   
 
-.intro-overlay {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  text-align: center;              
-  color: #fff;  
-}
+  .intro-overlay {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+  }
 
 
 
@@ -210,4 +221,36 @@ position: absolute;
     transform: translateY(20px);
     animation: fadeInUp 1.5s ease forwards;
     animation-delay: 0.3s; 
+  }
+
+  @media (max-width: 600px) {
+    .difficulty-options {
+      flex-direction: column; /* Stack buttons vertically */
+    }
+  
+    .intro-title {
+      padding-top: 2rem;
+      font-size: 2rem; /* Scale down title */
+    }
+  
+    .intro-story {
+      font-size: 1rem; /* Scale down story text */
+    }
+  
+    .sound-toggle-btn {
+      bottom: 1rem;
+      right: 1rem;
+    }
+    .intro-overlay{
+      width:80vw;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    header {
+     top: 0;
+     left: auto;
+    }
+    
+
   }
