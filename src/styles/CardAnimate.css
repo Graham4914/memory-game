@@ -46,16 +46,7 @@
   }
 }
 
-@media (min-width: 510px) {
-  
-.card {
-  width: 21vw; 
-  height: calc(21vw * 1.39); 
-  max-width: 14rem; 
-  max-height: 19.5rem;
-  perspective: 800px; 
-}
-}
+
 
 
 @media (max-height: 600px) {
@@ -106,4 +97,43 @@
 } 
 .card-back img {
   border-radius: 10px;
+}
+
+/* Default card size (for large screens) */
+.card {
+  width: 23vw;
+  height: calc(23vw * 1.39);
+  max-width: 226px;
+  max-height: 314px;
+  perspective: 800px;
+}
+
+/* Medium screens (like your 15-inch laptop) */
+@media (max-width: 1400px) {
+  .card {
+    width: 20vw;
+    height: calc(20vw * 1.39);
+    max-width: 140px;
+    max-height: 195px;
+  }
+}
+
+/* Small screens (tablets and smaller) */
+@media (max-width: 900px) {
+  .card {
+    width: 25vw;
+    height: calc(25vw * 1.39);
+    max-width: 120px;
+    max-height: 170px;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 600px) {
+  .card {
+    width: 35vw;
+    height: calc(35vw * 1.39);
+    max-width: 100px;
+    max-height: 140px;
+  }
 }
