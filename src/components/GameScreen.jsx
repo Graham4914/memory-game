@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect } from "react";
 import ReactHowler from "react-howler";
 import "/src/styles/GameScreen.css";
-import Card from "./card";
+import Card from "./Card";
 import "/src/styles/CardAnimate.css";
 import SoundToggleButton from "./SoundToggleButton";
 
