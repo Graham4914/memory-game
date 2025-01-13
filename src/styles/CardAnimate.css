@@ -18,15 +18,7 @@
   width:100% ;
 }
 
-/* Cards scale with viewport width */
-/* .card {
-  width: 21vw; 
-  height: calc(21vw * 1.39); 
-  max-width: 14rem; 
-  max-height: 19.5rem;
-  perspective: 800px;
-  
-} */
+
 
 /* Mobile View: 2 columns, 4 rows */
 @media (max-width: 510px)  {
@@ -55,14 +47,13 @@
 }
 
 @media (min-width: 510px) {
-  /* Cards scale with viewport width */
+  
 .card {
   width: 21vw; 
   height: calc(21vw * 1.39); 
   max-width: 14rem; 
   max-height: 19.5rem;
-  perspective: 800px; /* Adjust perspective for scaling */
-  /* transition: width 0.3s, height 0.3s;  */
+  perspective: 800px; 
 }
 }
 
@@ -85,11 +76,11 @@
 
 .card-front img,
 .card-back img {
-  width: 100%;       /* Fill the entire width of the card */
-  height: 100%;      /* Fill the entire height of the card */
-  object-fit: cover; /* Ensure the image covers the area without distortion */
-  border-radius: 10px; /* Match the card's border radius */
-  display: block;    /* Remove any default spacing */
+  width: 100%;       
+  height: 100%;      
+  object-fit: cover; 
+  border-radius: 10px; 
+  display: block;    
 }
 .card-front,
 .card-back {
@@ -105,12 +96,12 @@
 
 .card-front {
   transform: rotateY(180deg);
+  cursor: pointer;
 }
 
 .card-front:hover
 { 
-  
-  box-shadow: 0 0 20px #42a5f5;;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
   border-radius: 10px;
 } 
 .card-back img {

@@ -46,7 +46,7 @@
 /*score styles*/
 
   .score-container {
-    position: absolute; /* Absolute to center */
+    position: absolute; 
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -67,9 +67,6 @@
     margin: 0;
   }
  
-  /* .score {
-    text-align: right;
-  } */
 
 /*level styles*/
   
@@ -91,34 +88,8 @@
     margin: 5px 0 0;
     font-size: 1rem;
   }
-footer button.sound-toggle-btn {
-  position: fixed;
-  bottom: 1rem;
-    z-index: 100;
-    padding: 0.5rem 1rem;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    margin: 10px 0;
-  }
-  
-  .sound-toggle-btn:hover {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
 
-
-  
 @media (max-width: 600px) {
-  footer button.sound-toggle-btn {
-    position: fixed;
-    bottom: 0rem;
-      z-index: 100;
-      padding: 0.3rem 1rem;
-  
-     
-    }
 
   .header-container{
     gap: 2rem;
@@ -138,6 +109,10 @@ footer button.sound-toggle-btn {
   .timer {
     font-size: 1.1rem;
 
+  }
+
+  .sound-toggle-btn {
+    font-size: 1.2rem;
   }
 /*score responsive*/
 .score-container {
@@ -180,22 +155,12 @@ p.score-style {
 }
 
 
-@media (min-width: 625px) and (max-width: 1300px) {
-  footer button.sound-toggle-btn {
-    position: fixed;
-    bottom: 0rem;
-      z-index: 100;
-      padding: 0.4rem .8rem;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-      margin: 5px 0;
-    }
-}
-@media (min-width: 600px) and (max-width: 1100px) {
-  
+
+@media (min-width: 600px) and (max-width: 1150px) {
+  .sound-toggle-btn {
+    bottom: .2rem;
+    font-size: 1.2rem;
+  }
 
   .header-container{
     gap: 2rem;
@@ -216,7 +181,7 @@ p.score-style {
     font-size: 1.5rem;
 
   }
-/*score responsive*/
+
 .score-container {
   color: #fff;
   text-align: center;
@@ -236,8 +201,6 @@ p.score-style {
   text-align: right;
 }
 
-
-/*level styles*/
   
 .level-container {
  

@@ -7,13 +7,11 @@ function ButtonWithSound({ onClick, children, className, disabled, muted }) {
   const handleClick = (e) => {
     if (disabled) return;
 
-    console.log("🔊 Button clicked:", className);  // ✅ Debugging
-    
-      // 🔄 Reset sound to avoid lag or overlap
+    console.log("🔊 Button clicked:", className);  
       setPlayClickSound(false);
       setTimeout(() => setPlayClickSound(true), 0);
   
-      if (onClick) onClick(e);  // Preserve original click behavior
+      if (onClick) onClick(e); 
     };
 
   return (
@@ -22,13 +20,12 @@ function ButtonWithSound({ onClick, children, className, disabled, muted }) {
         {children}
       </button>
 
-      {/* 🔊 Button Click Sound */}
+      {/* Button Click Sound */}
       <ReactHowler
         src={["/audio/buttonclick.mp3"]}
         playing={playClickSound && !muted}
 
-        onEnd={() => setPlayClickSound(false)}  // Reset after playing
-        volume={1}
+        onEnd={() => setPlayClickSound(false)}  
       />
     </>
   );

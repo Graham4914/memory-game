@@ -1,6 +1,5 @@
 import React from "react";
 import "/src/styles/ResultScreen.css"
-import SoundToggleButton from "./SoundToggleButton";
 import ReactHowler from "react-howler";
 import ButtonWithSound from "./ButtonWithSound";
 
@@ -37,9 +36,9 @@ function ResultScreen({ isWin, score, bestScore, onPlayAgain, onQuit, difficulty
           onClick={() => {
             setTimeout(() => {
               onPlayAgain();
-            }, 200);  // 🔊 200ms delay before restarting the game
+            }, 200);  
           }}
-          muted={muted}  // 🔊 Pass the muted state
+          muted={muted}  
         >
           {isWin ? "Play Again" : "Try Again"}
         </ButtonWithSound>
@@ -47,7 +46,7 @@ function ResultScreen({ isWin, score, bestScore, onPlayAgain, onQuit, difficulty
         <ButtonWithSound
           className="result-button"
           onClick={onQuit}
-          muted={muted}  // 🔊 Pass the muted state
+          muted={muted}  
         >
           Quit
         </ButtonWithSound>
@@ -58,7 +57,7 @@ function ResultScreen({ isWin, score, bestScore, onPlayAgain, onQuit, difficulty
           src={isWin ? ["/audio/resultpy.mp3"] : ["/audio/ominous.mp3"]}
           playing={!muted}
           loop={true}
-          volume={0.1}
+          volume={0.09}
         />
        
       </div>

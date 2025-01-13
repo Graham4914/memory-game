@@ -77,13 +77,11 @@ html, body {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Fade-up animation if you want it */
+
 @keyframes resultFadeInUp {
   0% {
     opacity: 0;
-    /* Start slightly lower by adjusting the Y offset
-       e.g., translate(-50%, -40%) means you’re 10% 'above' the final? 
-       Or you can do -60% to start even further below. */
+
     transform: translate(-50%, -30%);
   }
   100% {

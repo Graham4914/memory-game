@@ -31,7 +31,7 @@ import ButtonWithSound from './components/ButtonWithSound';
   
     //---gloabal sound control---
     const [soundPlaying, setSoundPlaying] = useState(true); 
-    const [muted, setMuted] = useState(false);
+    const [muted, setMuted] = useState(true);
 
 
 
@@ -90,7 +90,6 @@ import ButtonWithSound from './components/ButtonWithSound';
   
 
   const startGame = () => {
-    //Reset states
     setSelectedCards([]);
     setScore(0);
     setVisibleCards([]); 
@@ -98,7 +97,7 @@ import ButtonWithSound from './components/ButtonWithSound';
     setDeckLoaded(false);
     setGameState("loading");
 
-  // Now go to "loading"
+  
   setGameState("loading");
     //Fetch a new shuffeled deck
     fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1")
@@ -169,16 +168,15 @@ import ButtonWithSound from './components/ButtonWithSound';
 
     const restartGame = () => {
       setGameState("intro")
-      setVideoWatched(true); // Skip video on replay
+      setVideoWatched(true); 
       setScore(0);
     };
 
     const quitGame = () => {
-      // This is used if user wants to exit completely
       setGameState("intro");
-      setVideoWatched(false); // so next time, we see the intro
+      setVideoWatched(false); 
       setScore(0);
-      setBestScore(0); // you can decide if you want to reset bestScore
+      setBestScore(0); 
       setSoundPlaying(false); 
       setMuted(true);
     };
@@ -249,12 +247,11 @@ import ButtonWithSound from './components/ButtonWithSound';
       autoPlay
       loop={false}
       muted={false}
-      // onEnded={() => setGameState("won")} // optional
+      
       style={{ width: "100%", height: "100%", objectFit: "cover" }}
     />
   <SoundToggleButton muted={muted} setMuted={setMuted} />
-    {/* Overlaid Result */}
-  
+   
       <ResultScreen
         isWin
         score={score}
@@ -277,7 +274,6 @@ import ButtonWithSound from './components/ButtonWithSound';
       autoPlay
       loop={false}
       muted={false}
-      // e.g. onEnded={() => setGameState("lost")}
       style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
     />
     <SoundToggleButton muted={muted} setMuted={setMuted} />   
@@ -298,7 +294,7 @@ import ButtonWithSound from './components/ButtonWithSound';
   </div>
 )}
 
-      {/* WON -> SHOW RESULT SCREEN */}
+     
       {gameState === "won" && (
         <ResultScreen
           isWin={true}
@@ -310,7 +306,7 @@ import ButtonWithSound from './components/ButtonWithSound';
         />
       )}
 
-      {/* LOST -> SHOW RESULT SCREEN */}
+      
       {gameState === "lost" && (
         <ResultScreen
           isWin={false}

@@ -6,9 +6,11 @@ function SoundToggleButton({ muted, setMuted }) {
     <ButtonWithSound
     onClick={() => setMuted(!muted)}
     className="sound-toggle-btn"
-    muted={muted}  // 🔊 Pass the muted state
+    muted={muted} 
   >
-    {muted ? "Sound: OFF" : "Sound: ON"}
+  
+
+  {muted ? "🔇" : "🔊"}
   </ButtonWithSound>
   );
 }

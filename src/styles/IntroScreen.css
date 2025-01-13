@@ -9,14 +9,6 @@ body {
   height: 100%;
   overflow: hidden; 
 }
-/* 
-.intro-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background-color: #000; 
-} */
 
 .intro-container {
   display: flex;
@@ -120,23 +112,7 @@ position: absolute;
   }
 
 
-  .sound-toggle-btn {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 100;
-    padding: 0.5rem 1rem;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  .sound-toggle-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-  
+
 
 
 .intro-video {
@@ -225,16 +201,16 @@ position: absolute;
 
   @media (max-width: 600px) {
     .difficulty-options {
-      flex-direction: column; /* Stack buttons vertically */
+      flex-direction: column; 
     }
   
     .intro-title {
       padding-top: 2rem;
-      font-size: 2rem; /* Scale down title */
+      font-size: 2rem; 
     }
   
     .intro-story {
-      font-size: 1rem; /* Scale down story text */
+      font-size: 1rem; 
     }
   
     .sound-toggle-btn {

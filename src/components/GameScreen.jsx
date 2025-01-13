@@ -4,7 +4,7 @@ import "/src/styles/GameScreen.css";
 import Card from "./card";
 import "/src/styles/CardAnimate.css";
 import SoundToggleButton from "./SoundToggleButton";
-import ButtonWithSound from "./ButtonWithSound";
+
 
 
 
@@ -38,7 +38,6 @@ function GameScreen({
       
     };
 
-
     const handlePhaseComplete = (phase) => {
       if (phase === 1 || phase === 2) {
         setCardsFlippedCount((count) => count + 1);
@@ -68,14 +67,14 @@ function GameScreen({
   }, [flipPhase, cardsFlippedCount, visibleCards, shuffleAndRender]);
     
 
-  const [timer, setTimer] = useState(null); // Timer in seconds
+  const [timer, setTimer] = useState(null); 
 
     // Map difficulty to time limits
     const timeLimits = {
       easy: 40, 
       medium: 90, 
       hard: 180, 
-      "super-spy": 30000, 
+      "super-spy": 300, 
     };
 
 
@@ -93,14 +92,14 @@ function GameScreen({
           setTimer((prevTimer) => prevTimer - 1);
         }, 1000);
   
-        return () => clearInterval(interval); // Cleanup
+        return () => clearInterval(interval); 
       } else {
         // Trigger lose condition when timer reaches 0
         onLose();
       }
     }, [timer, onLose]);
   
-    // Format timer as MM:SS
+
     const formatTime = (seconds) => {
       if (seconds === null) return "00:00"; 
       const minutes = Math.floor(seconds / 60);
@@ -125,14 +124,10 @@ function GameScreen({
 
         <div className="level-container">
           <h2>LEVEL: {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</h2>
-          <p>Cards to Win: {cardsToWin}</p> {/* Dynamically display cardsToWin */}
+          <p>Cards to Win: {cardsToWin}</p> 
         </div>
-      
-
       </div>
       
-
-
 
     <div className="card-grid-wrapper">
       <div className="card-grid">
@@ -148,8 +143,7 @@ function GameScreen({
             </div>
       </div>
 
-         
-
+        
         <ReactHowler
           src={["/audio/gameplay-music.wav"]}
           playing={!muted}
@@ -157,17 +151,16 @@ function GameScreen({
           volume={0.17}
         />
 
-            <ReactHowler
-                src={["/audio/card-flip2.mp3"]}
-                playing={playFlipSound && !muted}
-                onEnd={() => setPlayFlipSound(false)}  // Reset after sound
-                volume={0.4}
-            />
+        <ReactHowler
+          src={["/audio/card-flip2.mp3"]}
+          playing={playFlipSound && !muted}
+          onEnd={() => setPlayFlipSound(false)} 
+          volume={0.1}
+        />
 
-            <footer >
-            <SoundToggleButton muted={muted} setMuted={setMuted} />
-            </footer>
-      
+      <footer>
+          <SoundToggleButton muted={muted} setMuted={setMuted} />
+      </footer>
     </div>
   );
   

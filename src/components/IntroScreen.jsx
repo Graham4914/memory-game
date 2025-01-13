@@ -38,11 +38,11 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted }) 
 const handleDifficultySelect = (diff) => {
   setSelectedDifficulty(diff);
 
-  // 🔊 Add slight delay to allow click sound to play
+  //  Added slight delay to allow click sound to play
   setTimeout(() => {
     setDifficulty(diff);
-    onStart();  // Move to the next game state
-  }, 200);  // 200ms delay (adjust if needed)
+    onStart();  
+  }, 200); 
 };
 
 
@@ -61,27 +61,16 @@ const handleDifficultySelect = (diff) => {
    
       {!introStarted &&  (
         <div className="intro-background">
-         
-          
-          {/* If the video is loaded, show "Watch Intro"; otherwise, show Spinner */}
           {!videoLoaded && <Spinner />}
           {videoLoaded && !videoEnded && (
             <>
              <header>
-              <div className="game-logo-container">
-  
-              </div>
-            
-             </header>
+              <div className="game-logo-container"></div>
+            </header>
             <ButtonWithSound className="intro-button watch-intro-btn" onClick={handleWatchIntro}>
               Watch Intro
             </ButtonWithSound>
             </>
-            
-           
-            
-            
-           
           )}
         </div>
       )}
@@ -105,10 +94,9 @@ const handleDifficultySelect = (diff) => {
         slowdownInterval={100}    // reduce speed every 100ms
       />
     
-      {/* 3) ReactHowler for spy track */}
+    
       <ReactHowler
         src={["/audio/spyintro.wav"]}
-        // playing={soundPlaying}
         loop
         volume={0.05}
         mute={muted}
@@ -116,7 +104,6 @@ const handleDifficultySelect = (diff) => {
       <SoundToggleButton muted={muted} setMuted={setMuted} />
     
 
-      {/* 5) Show overlay after video ends */}
       {videoEnded && (
         <div className="intro-overlay">
           <div className="intro-content-container fade-up">
@@ -125,7 +112,6 @@ const handleDifficultySelect = (diff) => {
           One rule: <strong>Never pick the same card twice</strong></p>
           </div>
           
-          {/* Difficulty Selection */}
           <div className="difficulty-options fade-up">
           <ButtonWithSound
     className={`difficulty-btn ${!selectedDifficulty ? "pulse" : ""}`}
@@ -159,8 +145,6 @@ const handleDifficultySelect = (diff) => {
     Super Spy
   </ButtonWithSound>
           </div>
-
-      
         </div>
       )}
     </div>
