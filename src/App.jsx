@@ -6,7 +6,7 @@ import ResultScreen from './components/ResultScreen';
 import { renderCards } from './utils/renderCards';
 import VideoClip from './components/VideoClip';
 import SoundToggleButton from './components/SoundToggleButton';
-import ButtonWithSound from './components/ButtonWithSound';
+
 
   function App() {
   //Gamestate - Appflow
@@ -37,9 +37,7 @@ import ButtonWithSound from './components/ButtonWithSound';
 
 
   function shuffleAndRender() {
-    console.log("Shuffling cards with current state:", { cards, selectedCards });
     const new8 = renderCards(cards, selectedCards, 8);
-    console.log("New visible cards:", new8);
     setVisibleCards(new8);
   }
 
@@ -54,20 +52,15 @@ import ButtonWithSound from './components/ButtonWithSound';
       case "super-spy":
         return 52;
       default:
-        return 8; // Fallback for safety
+        return 8;
     }
   };
   
 
   const handleCardClick = (cardCode) => {
-    console.log("Clicked card code:", cardCode);
-  
     if (selectedCards.includes(cardCode)) {
       handleLose();
-      console.log("Animation started");
-      
     } else {
-      console.log("New card selected:", cardCode);
       const newSelected = [...selectedCards, cardCode];
       setSelectedCards(newSelected);
    
@@ -115,7 +108,7 @@ import ButtonWithSound from './components/ButtonWithSound';
   };
 
 
-    //Useeffect to fecth all 52 cards with valkid deckID
+    
     useEffect(() => {
       if(deckId && gameState === "loading") {
         //Draw all 52 cards from deck
@@ -123,17 +116,12 @@ import ButtonWithSound from './components/ButtonWithSound';
         .then((response) => response.json())
         .then((data) => {
           if(data.success) {
-            console.log("Fetched cards:", data.cards);
-               
             setCards(data.cards); //store 52 card objects
              // Preload all card images
           data.cards.forEach((card) => {
             const img = new Image();
             img.src = card.image; // Preload the card image
           });
-          console.log("All card images preloaded");
-
-            // setGameState("playing");
             setDeckLoaded(true);
 
           } else {
@@ -155,7 +143,7 @@ import ButtonWithSound from './components/ButtonWithSound';
 
    
     const handleWin = () => {
-      console.log("Current Score:", score, "Best Score:", bestScore);
+   
       setGameState("winTransition");
       if (score > bestScore) {
         setBestScore(score);
@@ -203,19 +191,17 @@ import ButtonWithSound from './components/ButtonWithSound';
            muted={false}
            onEnded={() => setVideoEnded(true)}
            style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
-         />
-          <SoundToggleButton muted={muted} setMuted={setMuted} />
+          />
+            <SoundToggleButton muted={muted} setMuted={setMuted} />
 
-                  <ReactHowler
-          src={["/audio/walking-at-night.mp3"]}
-          playing={!muted}
-          loop
-          volume={1.7}
-          muted={muted}
-      
-        />
+                    <ReactHowler
+            src={["/audio/walking-at-night.mp3"]}
+            playing={!muted}
+            loop
+            volume={1.7}
+            muted={muted}
+          />
           </>
-         
         )}
 
           
@@ -263,7 +249,6 @@ import ButtonWithSound from './components/ButtonWithSound';
         muted={muted}
         setMuted={setMuted}
       />
-    
   </div>
 )}
 
@@ -290,7 +275,6 @@ import ButtonWithSound from './components/ButtonWithSound';
         muted={muted}
         setMuted={setMuted}
       />
-
   </div>
 )}
 

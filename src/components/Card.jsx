@@ -25,13 +25,13 @@ const Card = memo(({ card, flipPhase, onPhaseComplete, onClick }) => {
         }
       }}
     >
-      {/* FRONT */}
+      
   <    div className="card-front">
         <img src={card.image} alt={`${card.value} of ${card.suit}`} 
         />
       </div>
 
-      {/* BACK */}
+    
         <div className="card-back">
         <img
           src="/images/back-of-card.webp" 

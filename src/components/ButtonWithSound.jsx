@@ -6,8 +6,6 @@ function ButtonWithSound({ onClick, children, className, disabled, muted }) {
 
   const handleClick = (e) => {
     if (disabled) return;
-
-    console.log("🔊 Button clicked:", className);  
       setPlayClickSound(false);
       setTimeout(() => setPlayClickSound(true), 0);
   

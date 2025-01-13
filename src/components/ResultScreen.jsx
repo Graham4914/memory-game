@@ -3,14 +3,10 @@ import "/src/styles/ResultScreen.css"
 import ReactHowler from "react-howler";
 import ButtonWithSound from "./ButtonWithSound";
 
-// console.log("Muted state in IntroScreen:", muted);
-
 
 function ResultScreen({ isWin, score, bestScore, onPlayAgain, onQuit, difficulty, cardsToWin, muted, setMuted }) {
     return (
-
-      
-      // <div className="result-container">
+     
       <div className="result-overlay result-fade-up">
         {isWin ? (
           <>
