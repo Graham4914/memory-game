@@ -109,7 +109,7 @@
 }
 
 /* Medium screens (like your 15-inch laptop) */
-@media (max-width: 1400px) {
+@media (max-width:1550px) {
   .card {
     width: 20vw;
     height: calc(20vw * 1.39);
