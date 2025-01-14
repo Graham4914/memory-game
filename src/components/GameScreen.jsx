@@ -42,9 +42,6 @@ function GameScreen({
       if (phase === 1 || phase === 2) {
         setCardsFlippedCount((count) => count + 1);
       
-      
-       
-        
       }
     };
 

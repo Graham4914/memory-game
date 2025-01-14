@@ -89,7 +89,6 @@ const VideoClip = forwardRef(({
   return (
     <video
       className={className}
-      preload="none"
       ref={videoRef}
       src={src}
       loop={loop}

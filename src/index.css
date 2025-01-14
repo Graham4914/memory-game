@@ -17,6 +17,15 @@ a:hover {
   text-decoration: underline;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1a2c19; 
+  color: #fff; 
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -43,9 +52,9 @@ button:hover {
 
 
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    background-color: #1a2c19;
+    background-color: #1a2c19; 
     color: #fff;
   }
 }

@@ -1,4 +1,4 @@
-/* NEW: Wrapper to control scaling */
+
 .card-grid-wrapper {
   display: flex;
   justify-content: center;
@@ -6,7 +6,6 @@
   padding: 1rem 1rem 3rem;
   box-sizing: border-box;
   flex-grow: 1;
-
 }
 
 .card-grid {
@@ -20,42 +19,33 @@
 
 
 
-/* Mobile View: 2 columns, 4 rows */
-@media (max-width: 510px)  {
-  .card-grid {
 
-    grid-template-columns: repeat(2, 1fr);  /* 2 columns */
-    grid-template-rows: repeat(4, 1fr);     /* 4 rows */
+@media (max-width: 510px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     gap: 0.5rem;
-  }
-  .card {
-    width: 24vw; 
-    height: calc(24vw * 1.39); 
-    max-width: 14rem; 
-    max-height: 19.5rem;
   }
 
   .card-grid-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 80%;
-    padding: 1rem 1rem 1rem;
-    box-sizing: border-box;
-    flex-grow: 1;
+    padding: 1rem;
   }
 }
 
-
-
+.card {
+  width: clamp(100px, 20vw, 226px);  /* Smooth scaling between 100px and 226px */
+  height: calc(clamp(100px, 20vw, 226px) * 1.39); /* Maintain 1.39 aspect ratio */
+  perspective: 800px;
+  transition: transform 0.3s ease;
+}
 
 @media (max-height: 600px) {
   .card {
-    width: 17vw;
-    height: calc(15vw * 1.39);
+    width: clamp(80px, 18vw, 180px);
+    height: calc(clamp(80px, 18vw, 180px) * 1.39);
   }
 }
-
 
 .card-inner {
   width: 100%;
@@ -99,41 +89,4 @@
   border-radius: 10px;
 }
 
-/* Default card size (for large screens) */
-.card {
-  width: 23vw;
-  height: calc(23vw * 1.39);
-  max-width: 226px;
-  max-height: 314px;
-  perspective: 800px;
-}
 
-/* Medium screens (like your 15-inch laptop) */
-@media (max-width:1550px) {
-  .card {
-    width: 20vw;
-    height: calc(20vw * 1.39);
-    max-width: 140px;
-    max-height: 195px;
-  }
-}
-
-/* Small screens (tablets and smaller) */
-@media (max-width: 900px) {
-  .card {
-    width: 25vw;
-    height: calc(25vw * 1.39);
-    max-width: 120px;
-    max-height: 170px;
-  }
-}
-
-/* Mobile devices */
-@media (max-width: 600px) {
-  .card {
-    width: 35vw;
-    height: calc(35vw * 1.39);
-    max-width: 100px;
-    max-height: 140px;
-  }
-}
