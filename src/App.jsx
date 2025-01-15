@@ -185,7 +185,7 @@ import SoundToggleButton from './components/SoundToggleButton';
         {gameState === "loading" && (
           <>
            <VideoClip
-           src="/videos/001EnterCasino.mp4"
+           src="/videos/001entercasino.mp4"
            autoPlay
            loop={false}
            muted={false}

@@ -68,7 +68,7 @@ function GameScreen({
 
     // Map difficulty to time limits
     const timeLimits = {
-      easy: 40, 
+      easy: 60, 
       medium: 90, 
       hard: 180, 
       "super-spy": 300, 
