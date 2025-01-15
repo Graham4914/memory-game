@@ -5,7 +5,6 @@ import VideoClip from "./VideoClip";
 import SoundToggleButton from "./SoundToggleButton";
 import ButtonWithSound from "./ButtonWithSound";
 
-// A quick spinner component for demonstration
 function Spinner() {
   return <div className="spinner">Loading cinematic assets...</div>;
 }
