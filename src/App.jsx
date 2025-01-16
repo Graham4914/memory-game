@@ -185,7 +185,7 @@ import SoundToggleButton from './components/SoundToggleButton';
         {gameState === "loading" && (
           <>
            <VideoClip
-           src="/videos/001entercasino.mp4"
+           src="/videos/spy-enter-casino.mp4"
            autoPlay
            loop={false}
            muted={false}
@@ -229,7 +229,7 @@ import SoundToggleButton from './components/SoundToggleButton';
 {gameState === "winTransition" && (
   <div className="video-overlay-container">
     <VideoClip
-      src="/videos/spywin.mp4"
+      src="/videos/spy-win-comp1.mp4"
       autoPlay
       loop={false}
       muted={false}
@@ -255,7 +255,7 @@ import SoundToggleButton from './components/SoundToggleButton';
 {gameState === "loseTransition" && (
   <div className="video-overlay-container">
     <VideoClip
-      src="/videos/spylose.mp4"
+      src="/videos/spy-lose-comp1.mp4"
       autoPlay
       loop={false}
       muted={false}
