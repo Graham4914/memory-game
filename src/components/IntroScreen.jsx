@@ -19,37 +19,16 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted, iO
 
   const videoRef = useRef(null);
 
-  // const handleWatchIntro = () => {
-    
-  //   setIntroStarted(true);
-  //   // setMuted(false);
-   
-  //   // if (videoRef.current) {
-  //   //   videoRef.current.play();
-  //   // }
-
-  //   if (videoRef.current) {
-  //     videoRef.current.muted = true;
-  //     videoRef.current.play();
-  //   }
-
-  // };
 
   const handleWatchIntro = () => {
     if (iOS) {
-      // For testing: skip the intro video entirely if iOS
-      // so we can see if that unblocks the spinner or not
+   
       setIntroStarted(false);
       setVideoEnded(true); 
       return;
     } else {
       setIntroStarted(true);
-      // If we keep it muted on iOS by default, we do NOT flip muted = false:
-      if (videoRef.current) {
-        // Keep the video truly muted until user specifically un-toggles it.
-        videoRef.current.muted = true; 
-        videoRef.current.play();
-      }
+      setMuted(false)
     }
   };
 
