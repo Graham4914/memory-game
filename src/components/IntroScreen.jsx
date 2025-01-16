@@ -78,7 +78,7 @@ const handleDifficultySelect = (diff) => {
            <VideoClip
         className="intro-video"
         ref={videoRef}
-        src="/videos/intro480.mp4"
+        src="/videos/intro-compressed.mp4"
         autoPlay={introStarted}
         muted
         loop={false} 
