@@ -4,6 +4,7 @@ import ReactHowler from "react-howler";
 import ButtonWithSound from "./ButtonWithSound";
 
 
+
 function ResultScreen({ isWin, score, bestScore, onPlayAgain, onQuit, difficulty, cardsToWin, muted, setMuted }) {
     return (
      
@@ -55,7 +56,7 @@ function ResultScreen({ isWin, score, bestScore, onPlayAgain, onQuit, difficulty
           loop={true}
           volume={0.09}
         />
-       
+            
       </div>
       
     );

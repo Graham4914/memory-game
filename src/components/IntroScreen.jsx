@@ -4,6 +4,7 @@ import "/src/styles/IntroScreen.css";
 import VideoClip from "./VideoClip";
 import SoundToggleButton from "./SoundToggleButton";
 import ButtonWithSound from "./ButtonWithSound";
+import { FaGithub } from 'react-icons/fa';
 
 function Spinner() {
   return <div className="spinner">Loading cinematic assets...</div>;
@@ -75,6 +76,7 @@ const handleDifficultySelect = (diff) => {
             </ButtonWithSound>
             </>
           )}
+
         </div>
       )}
 
@@ -151,9 +153,21 @@ const handleDifficultySelect = (diff) => {
     Super Spy
   </ButtonWithSound>
           </div>
+    
         </div>
       )}
+               {/* GitHub Icon and Credit */}
+      <div className="credit bottom-center">
+        <a href="https://github.com/Graham4914/memory-game" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+          <FaGithub size={20} />
+        </a>
+        <span>by G Sharman</span>
+      </div>
+       
+      
     </div>
+    
   );
+  
 }
 export default IntroScreen;

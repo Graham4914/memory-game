@@ -294,6 +294,8 @@ import SoundToggleButton from './components/SoundToggleButton';
         muted={muted}
         setMuted={setMuted}
       />
+
+      
   </div>
 )}
 
