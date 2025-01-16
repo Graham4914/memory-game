@@ -41,7 +41,7 @@ const handleDifficultySelect = (diff) => {
   setTimeout(() => {
     setDifficulty(diff);
     onStart();  
-  }, 50); 
+  }, 0); 
 };
 
 
