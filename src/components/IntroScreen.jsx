@@ -9,7 +9,7 @@ function Spinner() {
   return <div className="spinner">Loading cinematic assets...</div>;
 }
 
-function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted }) {
+function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted, iOS}) {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [introStarted, setIntroStarted] = useState(false);
   const [videoEnded, setVideoEnded] = useState(videoWatched);
@@ -19,20 +19,38 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted }) 
 
   const videoRef = useRef(null);
 
-  const handleWatchIntro = () => {
+  // const handleWatchIntro = () => {
     
-    setIntroStarted(true);
-    // setMuted(false);
+  //   setIntroStarted(true);
+  //   // setMuted(false);
    
-    // if (videoRef.current) {
-    //   videoRef.current.play();
-    // }
-    
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.play();
-    }
+  //   // if (videoRef.current) {
+  //   //   videoRef.current.play();
+  //   // }
 
+  //   if (videoRef.current) {
+  //     videoRef.current.muted = true;
+  //     videoRef.current.play();
+  //   }
+
+  // };
+
+  const handleWatchIntro = () => {
+    if (iOS) {
+      // For testing: skip the intro video entirely if iOS
+      // so we can see if that unblocks the spinner or not
+      setIntroStarted(false);
+      setVideoEnded(true); 
+      return;
+    } else {
+      setIntroStarted(true);
+      // If we keep it muted on iOS by default, we do NOT flip muted = false:
+      if (videoRef.current) {
+        // Keep the video truly muted until user specifically un-toggles it.
+        videoRef.current.muted = true; 
+        videoRef.current.play();
+      }
+    }
   };
 
   const handleVideoEnd = () => {
@@ -82,31 +100,34 @@ const handleDifficultySelect = (diff) => {
       )}
 
   
-           <VideoClip
-        className="intro-video"
-        ref={videoRef}
-        src="/videos/intro-comp1.mp4"
-        autoPlay={introStarted}
-        muted
-        loop={false} 
-        onCanPlayThrough={handleCanPlay}
-        onEnded={handleVideoEnd}
-        style={{ display: introStarted ? "block" : "none" }}
-        
-        // Enable the slowdown effect:
-        enableSlowdown={true}
-        nearEndThreshold={.8}    // start slowdown 2 seconds before end
-        minPlaybackRate={0.5}     // slow to half speed
-        slowdownInterval={100}    // reduce speed every 100ms
-      />
+{!iOS && (
+        <VideoClip
+          className="intro-video"
+          ref={videoRef}
+          src="/videos/intro-comp1.mp4"
+          autoPlay={introStarted}
+          muted
+          loop={false}
+          onCanPlayThrough={handleCanPlay}
+          onEnded={handleVideoEnd}
+          style={{ display: introStarted ? "block" : "none" }}
+          // slowdown effect can remain
+          enableSlowdown={true}
+          nearEndThreshold={0.8}
+          minPlaybackRate={0.5}
+          slowdownInterval={100}
+        />
+      )}
     
     
-      <ReactHowler
-        src={["/audio/spyintro.wav"]}
-        loop
-        volume={0.05}
-        mute={muted}
-      />
+    {!iOS && (
+        <ReactHowler
+          src={["/audio/spyintro.wav"]}
+          loop
+          volume={0.05}
+          mute={muted}
+        />
+      )}
       <SoundToggleButton muted={muted} setMuted={setMuted} />
     
 
