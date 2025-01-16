@@ -22,11 +22,17 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted }) 
   const handleWatchIntro = () => {
     
     setIntroStarted(true);
-    setMuted(false);
+    // setMuted(false);
    
+    // if (videoRef.current) {
+    //   videoRef.current.play();
+    // }
+    
     if (videoRef.current) {
+      videoRef.current.muted = true;
       videoRef.current.play();
     }
+
   };
 
   const handleVideoEnd = () => {

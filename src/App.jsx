@@ -188,8 +188,7 @@ import SoundToggleButton from './components/SoundToggleButton';
            src="/videos/spy-enter-casino.mp4"
            autoPlay
            loop={false}
-           mutedInitially={true}
-           muted={false}
+           muted={true}
            onEnded={() => setVideoEnded(true)}
            style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
           />
