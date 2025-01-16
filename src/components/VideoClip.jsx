@@ -23,6 +23,7 @@ const VideoClip = forwardRef(({
   autoPlay = true,
   loop = false,
   muted = true,
+  mutedInitially = false,
   onEnded,
   style = {},
   onCanPlayThrough,
@@ -85,6 +86,20 @@ const VideoClip = forwardRef(({
       videoRef.current.play();
     }
   }, [autoPlay, src]);
+
+  useEffect(() => {
+    if (mutedInitially && videoRef.current) {
+      videoRef.current.muted = true;  
+     
+      const timeoutId = setTimeout(() => {
+        videoRef.current.muted = false;
+      }, 300);
+  
+      return () => clearTimeout(timeoutId);  // Cleanup on unmount
+    }
+  }, [mutedInitially]);
+  
+  
 
   return (
     <video

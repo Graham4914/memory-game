@@ -6,8 +6,10 @@ function ButtonWithSound({ onClick, children, className, disabled, muted }) {
 
   const handleClick = (e) => {
     if (disabled) return;
-      setPlayClickSound(false);
-      setTimeout(() => setPlayClickSound(true), 0);
+
+
+      setPlayClickSound(true);
+
   
       if (onClick) onClick(e); 
     };
@@ -22,7 +24,7 @@ function ButtonWithSound({ onClick, children, className, disabled, muted }) {
       <ReactHowler
         src={["/audio/buttonclick.mp3"]}
         playing={playClickSound && !muted}
-
+        preload={true}
         onEnd={() => setPlayClickSound(false)}  
       />
     </>
