@@ -34,20 +34,6 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted }) 
 };
 
   
-// const handleDifficultySelect = (diff) => {
-//   setSelectedDifficulty(diff);
-
-//   setTimeout(() => {
-//     setDifficulty(diff);
-//     onStart();  
-//   }, 0); 
-// };
-// const handleDifficultySelect = (diff) => {
-//   setSelectedDifficulty(diff) 
-//   setDifficulty(diff);
-//   onStart(diff);  
-// };
-
 const handleDifficultySelect = (diff) => {
   setSelectedDifficulty(diff);
   setDifficulty(diff);
