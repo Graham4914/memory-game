@@ -192,8 +192,13 @@ import SoundToggleButton from './components/SoundToggleButton';
 
         {gameState === "loading" && (
           <>
-          {/* Skip video if iOS */}
-          {!iOS && (
+
+{iOS ? (
+      // iOS skip video, but let's make sure we set videoEnded = true
+      useEffect(() => {
+        setVideoEnded(true);
+      }, [])
+    ) : (
             <VideoClip
               src="/videos/spy-enter-casino.mp4"
               autoPlay
