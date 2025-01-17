@@ -98,7 +98,7 @@ const VideoClip = forwardRef(({
       loop={loop}
       muted={muted}
       playsInline
-      webkit-playsinline
+    
       
       style={{ maxWidth: "100%", ...style }}
       

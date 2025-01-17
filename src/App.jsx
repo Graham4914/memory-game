@@ -9,14 +9,6 @@ import SoundToggleButton from './components/SoundToggleButton';
 
 
   function App() {
-
-  // Quick iOS check:
-  function isIOS() {
-    return /iPhone|iPod|iPad/i.test(navigator.userAgent);
-  }
-  const iOS = isIOS();
-
-
   //Gamestate - Appflow
   const [gameState, setGameState] = useState("intro");
   const [difficulty, setDifficulty] = useState(null);
@@ -177,13 +169,7 @@ import SoundToggleButton from './components/SoundToggleButton';
       setMuted(true);
     };
   
-    useEffect(() => {
-      // If we are in loading state and we’re on iOS, skip the video
-      if (iOS && gameState === "loading") {
-        setVideoEnded(true);
-      }
-    }, [iOS, gameState]);
-
+  
 
     return (
       <div>
@@ -198,7 +184,7 @@ import SoundToggleButton from './components/SoundToggleButton';
 
 {gameState === "loading" && (
   <>
-    {!iOS && (
+    
             <VideoClip
               src="/videos/spy-enter-casino.mp4"
               autoPlay
@@ -208,11 +194,11 @@ import SoundToggleButton from './components/SoundToggleButton';
               onEnded={() => setVideoEnded(true)}
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
             />
-          )}
+         
             <SoundToggleButton muted={muted} setMuted={setMuted} />
 
              {/* Skip background music if iOS */}
-             {!iOS && (
+             
             <ReactHowler
               src={["/audio/walking-at-night.mp3"]}
               playing={!muted}
@@ -220,7 +206,7 @@ import SoundToggleButton from './components/SoundToggleButton';
               volume={1.7}
               muted={muted}
             />
-          )}
+          
         </>
         )}
 
@@ -248,8 +234,7 @@ import SoundToggleButton from './components/SoundToggleButton';
 
 {gameState === "winTransition" && (
   <div className="video-overlay-container">
-       {/* Skip video if iOS */}
-       {!iOS && (
+      
             <VideoClip
               src="/videos/spy-win-comp1.mp4"
               autoPlay
@@ -258,7 +243,7 @@ import SoundToggleButton from './components/SoundToggleButton';
               muted={false}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
-          )}
+         
   <SoundToggleButton muted={muted} setMuted={setMuted} />
    
       <ResultScreen
@@ -277,8 +262,6 @@ import SoundToggleButton from './components/SoundToggleButton';
 
 {gameState === "loseTransition" && (
   <div className="video-overlay-container">
-      {/* Skip video if iOS */}
-      {!iOS && (
             <VideoClip
               src="/videos/spy-lose-comp1.mp4"
               autoPlay
@@ -287,7 +270,6 @@ import SoundToggleButton from './components/SoundToggleButton';
               muted={false}
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
             />
-          )}
     <SoundToggleButton muted={muted} setMuted={setMuted} />   
     
       <ResultScreen

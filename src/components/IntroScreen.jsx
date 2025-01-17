@@ -10,7 +10,7 @@ function Spinner() {
   return <div className="spinner">Loading cinematic assets...</div>;
 }
 
-function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted, iOS}) {
+function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted}) {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [introStarted, setIntroStarted] = useState(false);
   const [videoEnded, setVideoEnded] = useState(videoWatched);
@@ -21,43 +21,51 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted, iO
   const videoRef = useRef(null);
 
 
-  const handleWatchIntro = () => {
-    if (iOS) {
+  // const handleWatchIntro = () => {
+  //   if (iOS) {
    
-      setIntroStarted(false);
-      setVideoEnded(true); 
-      return;
-    } else {
-      setIntroStarted(true);
-      setMuted(false)
-    }
+  //     setIntroStarted(false);
+  //     setVideoEnded(true); 
+  //     return;
+  //   } else {
+  //     setIntroStarted(true);
+  //     setMuted(false)
+  //   }
+  // };
+
+  const handleWatchIntro = () => {
+    // We no longer skip on iOS. We just proceed with playback for everyone.
+    setIntroStarted(true);
+    // Unmute the audio if we want sound to start. 
+    // (If the video has no audio, we can still do this or keep it muted.)
+    setMuted(false);
+
+    // If you want to manually call .play() on the video element (optional),
+    // you can do so if your VideoClip component exposes a ref:
+    // if (videoRef.current) {
+    //   videoRef.current.play();
+    // }
   };
 
   const handleVideoEnd = () => {
-  setVideoEnded(true);
-};
-
-  
-const handleDifficultySelect = (diff) => {
-  setSelectedDifficulty(diff);
-  setDifficulty(diff);
-  setTimeout(() => {
-    
-    onStart(diff, { mutedInitially: true });
-  },50); 
-  
- 
-};
-
-
-
+    setVideoEnded(true);
+  };
 
   const handleCanPlay = () => {
     setVideoLoaded(true);
   };
 
-
-
+  
+  const handleDifficultySelect = (diff) => {
+    setSelectedDifficulty(diff);
+    setDifficulty(diff);
+    setTimeout(() => {
+      
+      onStart(diff, { mutedInitially: true });
+    },50); 
+    
+  
+  };
 
 
   return (
@@ -80,8 +88,7 @@ const handleDifficultySelect = (diff) => {
         </div>
       )}
 
-  
-{!iOS && (
+
         <VideoClip
           className="intro-video"
           ref={videoRef}
@@ -99,17 +106,18 @@ const handleDifficultySelect = (diff) => {
           minPlaybackRate={0.5}
           slowdownInterval={100}
         />
-      )}
+      
     
     
-    {!iOS && (
+    
         <ReactHowler
           src={["/audio/spyintro.wav"]}
           loop
           volume={0.05}
           mute={muted}
+          playing={!muted && introStarted}
         />
-      )}
+      
       <SoundToggleButton muted={muted} setMuted={setMuted} />
     
 
