@@ -177,6 +177,12 @@ import SoundToggleButton from './components/SoundToggleButton';
       setMuted(true);
     };
   
+    useEffect(() => {
+      // If we are in loading state and we’re on iOS, skip the video
+      if (iOS && gameState === "loading") {
+        setVideoEnded(true);
+      }
+    }, [iOS, gameState]);
 
 
     return (
@@ -190,20 +196,15 @@ import SoundToggleButton from './components/SoundToggleButton';
             />
           )}
 
-        {gameState === "loading" && (
-          <>
-
-{iOS ? (
-      // iOS skip video, but let's make sure we set videoEnded = true
-      useEffect(() => {
-        setVideoEnded(true);
-      }, [])
-    ) : (
+{gameState === "loading" && (
+  <>
+    {!iOS && (
             <VideoClip
               src="/videos/spy-enter-casino.mp4"
               autoPlay
               loop={false}
               muted={true}
+              playsInline
               onEnded={() => setVideoEnded(true)}
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
             />
@@ -252,6 +253,7 @@ import SoundToggleButton from './components/SoundToggleButton';
             <VideoClip
               src="/videos/spy-win-comp1.mp4"
               autoPlay
+              playsInline
               loop={false}
               muted={false}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -280,6 +282,7 @@ import SoundToggleButton from './components/SoundToggleButton';
             <VideoClip
               src="/videos/spy-lose-comp1.mp4"
               autoPlay
+              playsInline
               loop={false}
               muted={false}
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}

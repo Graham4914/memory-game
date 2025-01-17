@@ -88,6 +88,7 @@ const handleDifficultySelect = (diff) => {
           src="/videos/intro-comp1.mp4"
           autoPlay={introStarted}
           muted
+          playsInline
           loop={false}
           onCanPlayThrough={handleCanPlay}
           onEnded={handleVideoEnd}
