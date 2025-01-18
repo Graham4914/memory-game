@@ -34,17 +34,8 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted}) {
   // };
 
   const handleWatchIntro = () => {
-    // We no longer skip on iOS. We just proceed with playback for everyone.
     setIntroStarted(true);
-    // Unmute the audio if we want sound to start. 
-    // (If the video has no audio, we can still do this or keep it muted.)
     setMuted(false);
-
-    // If you want to manually call .play() on the video element (optional),
-    // you can do so if your VideoClip component exposes a ref:
-    // if (videoRef.current) {
-    //   videoRef.current.play();
-    // }
   };
 
   const handleVideoEnd = () => {
@@ -64,7 +55,6 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted}) {
       onStart(diff, { mutedInitially: true });
     },50); 
     
-  
   };
 
 
@@ -74,7 +64,7 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted}) {
       {!introStarted &&  (
         <div className="intro-background">
         
-          {videoLoaded && !videoEnded && (
+          { !videoEnded && (
             <>
              <header>
               <div className="game-logo-container"></div>
