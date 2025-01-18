@@ -86,17 +86,17 @@
 .card-front {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
-  backface-visibility: hidden; 
-  -webkit-backface-visibility: hidden;
-  display: flex;
+  /* backface-visibility: hidden; 
+  -webkit-backface-visibility: hidden; */
+ 
   cursor: pointer;
 }
 
 .card-back {
   transform: rotateY(0deg);
   -webkit-transform: rotateY(0deg);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  /* backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; */
 }
 .card-front:hover
 { 
