@@ -38,6 +38,7 @@
   width: clamp(100px, 20vw, 226px);  /* Smooth scaling between 100px and 226px */
   height: calc(clamp(100px, 20vw, 226px) * 1.39); /* Maintain 1.39 aspect ratio */
   perspective: 800px;
+  -webkit-perspective: 800px; /* for iOS */
   transition: transform 0.3s ease;
 }
 
@@ -53,7 +54,9 @@
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   transition: transform 0.1s;
+  -webkit-transition: -webkit-transform 0.1s;
 }
 
 .card-front img,
@@ -64,6 +67,7 @@
   border-radius: 10px; 
   display: block;    
   backface-visibility: hidden; 
+  -webkit-backface-visibility: hidden;
 }
 .card-front,
 .card-back {
@@ -71,6 +75,7 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden; 
+  -webkit-backface-visibility: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,6 +84,7 @@
 
 .card-front {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
   cursor: pointer;
 }
 
