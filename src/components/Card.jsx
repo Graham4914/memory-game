@@ -17,7 +17,7 @@ const Card = memo(({ card, flipPhase, onPhaseComplete, onClick }) => {
       className="card-inner"
       onClick={onClick} 
       animate={{ rotateY: targetRotation }}
-      transition={{ duration: 0.7, ease: "easeInOut" }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
    
       onAnimationComplete={() => {
         if (flipPhase !== 0 && onPhaseComplete) {
