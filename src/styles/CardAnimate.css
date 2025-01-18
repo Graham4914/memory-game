@@ -91,6 +91,12 @@
   cursor: pointer;
 }
 
+.card-back {
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
 .card-front:hover
 { 
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
