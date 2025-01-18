@@ -206,12 +206,12 @@ position: absolute;
     }
   
     .intro-title {
-      padding-top: 2rem;
+      padding-top: .5rem;
       font-size: 2rem; 
     }
   
     .intro-story {
-      font-size: 1rem; 
+      font-size: .9rem; 
     }
   
     .sound-toggle-btn {
@@ -220,7 +220,7 @@ position: absolute;
     }
     .intro-overlay{
       width:80vw;
-      top: 50%;
+      top: 45%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
@@ -228,8 +228,21 @@ position: absolute;
      top: 0;
      left: auto;
     }
+
+    .difficulty-options button {
+      font-size: 1.2rem;              
+      padding: .5rem 1rem;
+      border: 1px solid #fff;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      cursor: pointer;
+    }
+  
     
   }
+
+
+
   .credit.bottom-center a ,
   .credit.bottom-center span{
     position: absolute;

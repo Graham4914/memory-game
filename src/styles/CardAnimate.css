@@ -30,16 +30,16 @@
   .card-grid-wrapper {
     width: 80%;
     padding: 1rem;
-    align-items: flex-start;
+    align-items:center;
   }
 }
 
 .card {
-  width: clamp(100px, 20vw, 226px);  /* Smooth scaling between 100px and 226px */
-  height: calc(clamp(100px, 20vw, 226px) * 1.39); /* Maintain 1.39 aspect ratio */
+  width: clamp(80px, 20vw, 226px);  /* Smooth scaling between 100px and 226px */
+  height: calc(clamp(80px, 20vw, 226px) * 1.39); /* Maintain 1.39 aspect ratio */
   perspective: 800px;
   -webkit-perspective: 800px; /* for iOS */
-  transition: transform 0.3s ease;
+  transition: transform 0.1s ease;
 }
 
 @media (max-height: 600px) {
