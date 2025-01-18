@@ -36,11 +36,11 @@
 }
 
 .card {
-  width: clamp(80px, 20vw, 226px);  /* Smooth scaling between 100px and 226px */
+  width: clamp(80px, 20vw, 226px);  
   height: calc(clamp(80px, 20vw, 226px) * 1.39); /* Maintain 1.39 aspect ratio */
   perspective: 800px;
-  -webkit-perspective: 800px; /* for iOS */
-  /* transition: transform 3.9s ease; */
+  -webkit-perspective: 800px; 
+
 }
 
 @media (max-height: 600px) {
@@ -56,8 +56,6 @@
   position: relative;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  /* transition: transform .0s ease;
-  -webkit-transition: -webkit-transform 0.0s; */
 }
 
 .card-front img,
@@ -69,6 +67,7 @@
   display: block;    
   backface-visibility: hidden; 
   -webkit-backface-visibility: hidden;
+  z-index: 100;
 }
 .card-front,
 .card-back {
@@ -86,17 +85,12 @@
 .card-front {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
-  /* backface-visibility: hidden; 
-  -webkit-backface-visibility: hidden; */
- 
   cursor: pointer;
 }
 
 .card-back {
   transform: rotateY(0deg);
   -webkit-transform: rotateY(0deg);
-  /* backface-visibility: hidden;
-  -webkit-backface-visibility: hidden; */
 }
 .card-front:hover
 { 

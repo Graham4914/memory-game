@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect } from "react";
 import ReactHowler from "react-howler";
 import "/src/styles/GameScreen.css";
-import Card from "./Card";
+import Card from "./card";
 import "/src/styles/CardAnimate.css";
 import SoundToggleButton from "./SoundToggleButton";
 
@@ -145,7 +145,7 @@ function GameScreen({
           src={["/audio/gameplay-music.wav"]}
           playing={!muted}
           loop
-          volume={0.17}
+          volume={0.12}
         />
 
         <ReactHowler

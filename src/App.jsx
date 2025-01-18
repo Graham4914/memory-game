@@ -203,7 +203,7 @@ import SoundToggleButton from './components/SoundToggleButton';
               src={["/audio/walking-at-night.mp3"]}
               playing={!muted}
               loop
-              volume={1.7}
+              volume={1.2}
               muted={muted}
             />
           

@@ -6,9 +6,6 @@ import SoundToggleButton from "./SoundToggleButton";
 import ButtonWithSound from "./ButtonWithSound";
 import { FaGithub } from 'react-icons/fa';
 
-// function Spinner() {
-//   return <div className="spinner">Loading cinematic assets...</div>;
-// }
 
 function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted}) {
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -21,17 +18,6 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted}) {
   const videoRef = useRef(null);
 
 
-  // const handleWatchIntro = () => {
-  //   if (iOS) {
-   
-  //     setIntroStarted(false);
-  //     setVideoEnded(true); 
-  //     return;
-  //   } else {
-  //     setIntroStarted(true);
-  //     setMuted(false)
-  //   }
-  // };
 
   const handleWatchIntro = () => {
     setIntroStarted(true);
@@ -50,11 +36,7 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted}) {
   const handleDifficultySelect = (diff) => {
     setSelectedDifficulty(diff);
     setDifficulty(diff);
-    setTimeout(() => {
-      
-      onStart(diff, { mutedInitially: true });
-    },50); 
-    
+    onStart(diff);
   };
 
 
@@ -94,7 +76,6 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted}) {
           }}
           onEnded={handleVideoEnd}
           style={{ display: introStarted ? "block" : "none" }}
-          // slowdown effect can remain
           // enableSlowdown={true}
           nearEndThreshold={0.8}
           minPlaybackRate={0.5}

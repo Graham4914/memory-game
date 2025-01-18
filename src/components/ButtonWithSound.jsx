@@ -26,6 +26,7 @@ function ButtonWithSound({ onClick, children, className, disabled, muted }) {
         playing={playClickSound && !muted}
         preload={true}
         onEnd={() => setPlayClickSound(false)}  
+        volume={.4}
       />
     </>
   );

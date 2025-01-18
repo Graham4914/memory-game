@@ -31,7 +31,6 @@ const Card = memo(({ card, flipPhase, onPhaseComplete, onClick }) => {
         />
       </div>
 
-    
         <div className="card-back">
         <img
           src="/images/back-of-card.webp" 
