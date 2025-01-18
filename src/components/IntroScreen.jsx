@@ -95,7 +95,7 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted}) {
           onEnded={handleVideoEnd}
           style={{ display: introStarted ? "block" : "none" }}
           // slowdown effect can remain
-          enableSlowdown={true}
+          // enableSlowdown={true}
           nearEndThreshold={0.8}
           minPlaybackRate={0.5}
           slowdownInterval={100}
