@@ -40,7 +40,7 @@
   height: calc(clamp(80px, 20vw, 226px) * 1.39); /* Maintain 1.39 aspect ratio */
   perspective: 800px;
   -webkit-perspective: 800px; /* for iOS */
-  transition: transform 0.1s ease;
+  /* transition: transform 3.9s ease; */
 }
 
 @media (max-height: 600px) {
@@ -56,8 +56,8 @@
   position: relative;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  transition: transform 0.1s;
-  -webkit-transition: -webkit-transform 0.1s;
+  /* transition: transform .0s ease;
+  -webkit-transition: -webkit-transform 0.0s; */
 }
 
 .card-front img,
