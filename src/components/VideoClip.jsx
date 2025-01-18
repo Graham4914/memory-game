@@ -26,6 +26,8 @@ const VideoClip = forwardRef(({
   onEnded,
   style = {},
   onCanPlayThrough,
+  playsInline,
+  onVideoReady,
   enableSlowdown = false,
   nearEndThreshold = 1.0,
   minPlaybackRate = 0.5,
@@ -97,8 +99,8 @@ const VideoClip = forwardRef(({
       src={src}
       loop={loop}
       muted={muted}
-      playsInline
-    
+      playsInline={playsInline}
+      onVideoReady={onVideoReady}
       
       style={{ maxWidth: "100%", ...style }}
       

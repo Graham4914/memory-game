@@ -6,9 +6,9 @@ import SoundToggleButton from "./SoundToggleButton";
 import ButtonWithSound from "./ButtonWithSound";
 import { FaGithub } from 'react-icons/fa';
 
-function Spinner() {
-  return <div className="spinner">Loading cinematic assets...</div>;
-}
+// function Spinner() {
+//   return <div className="spinner">Loading cinematic assets...</div>;
+// }
 
 function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted}) {
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -73,7 +73,7 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted}) {
    
       {!introStarted &&  (
         <div className="intro-background">
-          {!videoLoaded && <Spinner />}
+        
           {videoLoaded && !videoEnded && (
             <>
              <header>
@@ -98,6 +98,10 @@ function IntroScreen({ onStart, setDifficulty, videoWatched, muted, setMuted}) {
           playsInline
           loop={false}
           onCanPlayThrough={handleCanPlay}
+          onVideoReady={() => {
+            setVideoLoaded(true); 
+            console.log("Video is ready!");
+          }}
           onEnded={handleVideoEnd}
           style={{ display: introStarted ? "block" : "none" }}
           // slowdown effect can remain
