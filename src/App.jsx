@@ -199,7 +199,7 @@ import SoundToggleButton from './components/SoundToggleButton';
          <SoundToggleButton muted={muted} setMuted={setMuted} />
            
 
-             {/* Skip background music if iOS */}
+          
              
             <ReactHowler
               src={["/audio/walking-at-night.mp3"]}
@@ -237,19 +237,15 @@ import SoundToggleButton from './components/SoundToggleButton';
 {gameState === "winTransition" && (
   <div className="video-overlay-container">
     
-      
             <VideoClip
               src="/videos/spy-win-comp1.mp4"
               autoPlay
               playsInline
               loop={false}
               muted={false}
+              onEnded={() => setVideoEnded(true)}
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
-            />
-         
-         
-               
-            
+            /> 
    
       <ResultScreen
         isWin
@@ -274,12 +270,10 @@ import SoundToggleButton from './components/SoundToggleButton';
               playsInline
               loop={false}
               muted={false}
+              onEnded={() => setVideoEnded(true)}
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
             />
            
-            
-           
-    
     
       <ResultScreen
 
