@@ -36,8 +36,8 @@
 }
 
 .card {
-  width: clamp(80px, 20vw, 226px);  
-  height: calc(clamp(80px, 20vw, 226px) * 1.39); /* Maintain 1.39 aspect ratio */
+  width: clamp(85px, 20vw, 226px);  
+  height: calc(clamp(85px, 20vw, 226px) * 1.39); /* Maintain 1.39 aspect ratio */
   perspective: 800px;
   -webkit-perspective: 800px; 
 
@@ -45,8 +45,8 @@
 
 @media (max-height: 600px) {
   .card {
-    width: clamp(80px, 18vw, 180px);
-    height: calc(clamp(80px, 18vw, 180px) * 1.39);
+    width: clamp(60px, 16vw, 180px);
+    height: calc(clamp(60px, 16vw, 180px) * 1.39);
   }
 }
 
