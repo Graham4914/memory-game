@@ -80,3 +80,17 @@ button:hover {
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
   }
   
+  @media (max-width:1200px) {
+    .sound-toggle-btn {
+      padding:4px;
+      bottom: 1rem;
+    }
+  }
+
+  @media (max-width: 600px ) {
+    .sound-toggle-btn {
+      padding: 3px;
+      bottom: 1rem;
+      right: 1rem;
+    }
+  }
