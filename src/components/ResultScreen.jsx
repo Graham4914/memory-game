@@ -58,7 +58,8 @@ function ResultScreen({ isWin, score, bestScore, onPlayAgain, onQuit, difficulty
         />
             
       </div>
-      
+     
+    
     );
   }
   

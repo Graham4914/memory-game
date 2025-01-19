@@ -172,6 +172,7 @@ import SoundToggleButton from './components/SoundToggleButton';
   
 
     return (
+      
       <div>
         {gameState === "intro" && (
           <IntroScreen onStart={startGame}
@@ -195,7 +196,7 @@ import SoundToggleButton from './components/SoundToggleButton';
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
             />
          
-            <SoundToggleButton muted={muted} setMuted={setMuted} />
+           
 
              {/* Skip background music if iOS */}
              
@@ -234,7 +235,7 @@ import SoundToggleButton from './components/SoundToggleButton';
 
 {gameState === "winTransition" && (
   <div className="video-overlay-container">
-      
+      onClick={(e) => e.stopPropagation()} 
             <VideoClip
               src="/videos/spy-win-comp1.mp4"
               autoPlay
@@ -262,6 +263,7 @@ import SoundToggleButton from './components/SoundToggleButton';
 
 {gameState === "loseTransition" && (
   <div className="video-overlay-container">
+    onClick={(e) => e.stopPropagation()} 
             <VideoClip
               src="/videos/spy-lose-comp1.mp4"
               autoPlay
@@ -284,8 +286,6 @@ import SoundToggleButton from './components/SoundToggleButton';
         muted={muted}
         setMuted={setMuted}
       />
-
-      
   </div>
 )}
 
@@ -314,6 +314,8 @@ import SoundToggleButton from './components/SoundToggleButton';
       )}
        </div>
       );
+
+      
   }
   
   export default App;
