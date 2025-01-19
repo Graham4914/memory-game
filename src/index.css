@@ -93,4 +93,9 @@ button:hover {
       bottom: 1rem;
       right: 1rem;
     }
+    button.sound-toggle-btn {
+      z-index: 1000;
+    }
+    
+  
   }
