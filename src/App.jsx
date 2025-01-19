@@ -195,7 +195,8 @@ import SoundToggleButton from './components/SoundToggleButton';
               onEnded={() => setVideoEnded(true)}
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
             />
-         
+
+         <SoundToggleButton muted={muted} setMuted={setMuted} />
            
 
              {/* Skip background music if iOS */}
