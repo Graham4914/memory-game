@@ -246,8 +246,7 @@ import SoundToggleButton from './components/SoundToggleButton';
               onEnded={() => setVideoEnded(true)}
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
             /> 
-  
-  <SoundToggleButton muted={muted} setMuted={setMuted} />
+
            
       
       <ResultScreen
@@ -279,7 +278,6 @@ import SoundToggleButton from './components/SoundToggleButton';
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
             />
            
-           <SoundToggleButton muted={muted} setMuted={setMuted} />
            
     
       <ResultScreen

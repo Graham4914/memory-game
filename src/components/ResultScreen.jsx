@@ -61,7 +61,7 @@ function ResultScreen({ isWin, score, bestScore, onPlayAgain, onQuit, difficulty
             
       </div>
       
-      {/* <SoundToggleButton muted={muted} setMuted={setMuted} /> */}
+      <SoundToggleButton muted={muted} setMuted={setMuted} />
      
     
      </>
