@@ -236,8 +236,8 @@ import SoundToggleButton from './components/SoundToggleButton';
 
 {gameState === "winTransition" && (
   <div className="video-overlay-container">
-    
-            <VideoClip
+    <>
+    <VideoClip
               src="/videos/spy-win-comp1.mp4"
               autoPlay
               playsInline
@@ -247,6 +247,10 @@ import SoundToggleButton from './components/SoundToggleButton';
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
             /> 
    
+
+      <SoundToggleButton muted={muted} setMuted={setMuted} />
+
+      
       <ResultScreen
         isWin
         score={score}
@@ -258,13 +262,16 @@ import SoundToggleButton from './components/SoundToggleButton';
         muted={muted}
         setMuted={setMuted}
       />
+    
+    </>
+    
   </div>
 )}
 
 {gameState === "loseTransition" && (
   <div className="video-overlay-container">
-    
-            <VideoClip
+    <>
+    <VideoClip
               src="/videos/spy-lose-comp1.mp4"
               autoPlay
               playsInline
@@ -274,6 +281,7 @@ import SoundToggleButton from './components/SoundToggleButton';
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
             />
            
+           <SoundToggleButton muted={muted} setMuted={setMuted} />  
     
       <ResultScreen
 
@@ -287,11 +295,14 @@ import SoundToggleButton from './components/SoundToggleButton';
         muted={muted}
         setMuted={setMuted}
       />
+    </>
+     
   </div>
 )}
 
      
       {gameState === "won" && (
+        
         <ResultScreen
           isWin={true}
           score={score}
@@ -300,6 +311,7 @@ import SoundToggleButton from './components/SoundToggleButton';
           onQuit={quitGame}
           muted={muted}
         />
+
       )}
 
       
