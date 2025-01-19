@@ -2,13 +2,15 @@ import React from "react";
 import "/src/styles/ResultScreen.css"
 import ReactHowler from "react-howler";
 import ButtonWithSound from "./ButtonWithSound";
+import SoundToggleButton from "./SoundToggleButton";
+
 
 
 
 function ResultScreen({ isWin, score, bestScore, onPlayAgain, onQuit, difficulty, cardsToWin, muted, setMuted }) {
     return (
-     
-      <div className="result-overlay result-fade-up">
+     <>
+         <div className="result-overlay result-fade-up">
         {isWin ? (
           <>
           <h2 className="result-title">You Won!</h2>
@@ -58,6 +60,9 @@ function ResultScreen({ isWin, score, bestScore, onPlayAgain, onQuit, difficulty
         />
             
       </div>
+      <SoundToggleButton muted={muted} setMuted={setMuted} />
+     </>
+  
      
     
     );
