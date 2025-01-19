@@ -246,7 +246,9 @@ import SoundToggleButton from './components/SoundToggleButton';
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
          
-  <SoundToggleButton muted={muted} setMuted={setMuted} />
+            <>
+              <SoundToggleButton muted={muted} setMuted={setMuted} />   
+            </>
    
       <ResultScreen
         isWin
@@ -272,7 +274,10 @@ import SoundToggleButton from './components/SoundToggleButton';
               muted={false}
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
             />
-    <SoundToggleButton muted={muted} setMuted={setMuted} />   
+            <>
+            <SoundToggleButton muted={muted} setMuted={setMuted} />   
+            </>
+    
     
       <ResultScreen
 
