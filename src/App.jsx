@@ -236,7 +236,7 @@ import SoundToggleButton from './components/SoundToggleButton';
 
 {gameState === "winTransition" && (
   <div className="video-overlay-container">
-    <>
+  
     <VideoClip
               src="/videos/spy-win-comp1.mp4"
               autoPlay
@@ -246,10 +246,9 @@ import SoundToggleButton from './components/SoundToggleButton';
               onEnded={() => setVideoEnded(true)}
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
             /> 
-   
-
-      <SoundToggleButton muted={muted} setMuted={setMuted} />
-
+  
+  <SoundToggleButton muted={muted} setMuted={setMuted} />
+           
       
       <ResultScreen
         isWin
@@ -263,25 +262,25 @@ import SoundToggleButton from './components/SoundToggleButton';
         setMuted={setMuted}
       />
     
-    </>
+    
     
   </div>
 )}
 
 {gameState === "loseTransition" && (
   <div className="video-overlay-container">
-    <>
+  
     <VideoClip
               src="/videos/spy-lose-comp1.mp4"
               autoPlay
               playsInline
               loop={false}
               muted={false}
-              onEnded={() => setVideoEnded(true)}
               style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
             />
            
-           <SoundToggleButton muted={muted} setMuted={setMuted} />  
+           <SoundToggleButton muted={muted} setMuted={setMuted} />
+           
     
       <ResultScreen
 
@@ -295,15 +294,14 @@ import SoundToggleButton from './components/SoundToggleButton';
         muted={muted}
         setMuted={setMuted}
       />
-    </>
+    
      
   </div>
 )}
 
      
       {gameState === "won" && (
-        
-        <ResultScreen
+          <ResultScreen
           isWin={true}
           score={score}
           bestScore={bestScore}
@@ -311,12 +309,11 @@ import SoundToggleButton from './components/SoundToggleButton';
           onQuit={quitGame}
           muted={muted}
         />
-
       )}
 
       
       {gameState === "lost" && (
-        <ResultScreen
+          <ResultScreen
           isWin={false}
           score={score}
           bestScore={bestScore}
@@ -324,6 +321,7 @@ import SoundToggleButton from './components/SoundToggleButton';
           onQuit={quitGame}
           muted={muted}
         />
+
       )}
        </div>
       );
