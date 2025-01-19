@@ -236,7 +236,7 @@ import SoundToggleButton from './components/SoundToggleButton';
 
 {gameState === "winTransition" && (
   <div className="video-overlay-container">
-      onClick={(e) => e.stopPropagation()} 
+      
             <VideoClip
               src="/videos/spy-win-comp1.mp4"
               autoPlay
@@ -264,7 +264,6 @@ import SoundToggleButton from './components/SoundToggleButton';
 
 {gameState === "loseTransition" && (
   <div className="video-overlay-container">
-    onClick={(e) => e.stopPropagation()} 
             <VideoClip
               src="/videos/spy-lose-comp1.mp4"
               autoPlay
